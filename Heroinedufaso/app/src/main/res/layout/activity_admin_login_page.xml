@@ -4,40 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".AdminLoginPage">
 
-    <Button
-        android:id="@+id/user_btn_home_page"
+    <EditText
+        android:id="@+id/email_input_admin_login_page"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:text="Utilisatrice"
+        android:ems="10"
+        android:hint="Adresse couriel"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.702" />
+        app:layout_constraintVertical_bias="0.43" />
 
-    <Button
-        android:id="@+id/admin_btn_home_page"
+    <EditText
+        android:id="@+id/password_input_admin_login_page"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:text="Administratrice"
+        android:ems="10"
+        android:hint="Mot de passe"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/sp_health_btn_home_page"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:text="Specialiste de la sante"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.604" />
+        app:layout_constraintVertical_bias="0.526" />
 
+    <Button
+        android:id="@+id/login_btn_admin_login_page"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="Connexion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.639" />
 </androidx.constraintlayout.widget.ConstraintLayout>
