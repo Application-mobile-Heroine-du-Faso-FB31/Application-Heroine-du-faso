@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "502213972978",
+    "project_id": "heroine-du-faso",
+    "storage_bucket": "heroine-du-faso.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502213972978:android:8dda6218d518a52753516b",
+        "android_client_info": {
+          "package_name": "com.example.heroinedufaso"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502213972978-d3h535qonlo1ap64937etshv21fbmdpm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCygPGaq_0695VarWHti_LvUU6FFucZ-lQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502213972978-d3h535qonlo1ap64937etshv21fbmdpm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
