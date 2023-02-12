@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:visibility="visible"
     tools:context=".SignUpPage">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView android:id="@+id/imageView3" android:layout_width="match_parent" android:layout_height="203dp" />
+    <EditText android:id="@+id/Antecedent_page_creation" android:layout_width="match_parent" android:layout_height="79dp" android:backgroundTint="@color/black" android:ems="10" android:hint="Antécédent médicale" android:inputType="textPersonName" />
+    <EditText android:id="@+id/Nom_page_creation" android:layout_width="match_parent" android:layout_height="68dp" android:ems="10" android:hint="Nom complet" android:inputType="textPersonName" />
+    <EditText android:id="@+id/Numero_telephone_page_creation" android:layout_width="match_parent" android:layout_height="67dp"  android:ems="10" android:hint="Numéro de téléphone" android:inputType="phone" />
+    <EditText android:id="@+id/Date_de_naissance_page_creation" android:layout_width="match_parent" android:layout_height="64dp" android:ems="10" android:hint="Date de naissance" android:inputType="date" />
+    <EditText android:id="@+id/Adresse_page_creation" android:layout_width="match_parent" android:layout_height="74dp" android:ems="10" android:hint="Adresse" android:inputType="textPostalAddress" />
+    <Button android:id="@+id/Vocal_btn_page_creation" android:layout_width="match_parent" android:layout_height="67dp" android:text="Enregistrement vocal" />
+    <Button android:id="@+id/Valider_btn_page_creation" android:layout_width="match_parent" android:layout_height="69dp" android:text="Création du compte" />
+</LinearLayout>
