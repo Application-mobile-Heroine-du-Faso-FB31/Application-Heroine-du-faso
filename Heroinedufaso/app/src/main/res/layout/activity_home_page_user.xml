@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:visibility="visible"
     tools:context=".HomePageUser">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView android:id="@+id/imageView4" android:layout_width="match_parent" android:layout_height="219dp"  />
+    <Button android:id="@+id/chat" android:layout_width="match_parent" android:layout_height="63dp" android:text="chat" />
+
+    <Button android:id="@+id/forum" android:layout_width="match_parent" android:layout_height="63dp" android:text="Forum" />
+    <Button android:id="@+id/consultation" android:layout_width="match_parent" android:layout_height="63dp" android:text="CONSULTATION" />
+    <Button android:id="@+id/denoncer" android:layout_width="match_parent" android:layout_height="63dp" android:text="DENONCER" />
+    <Button android:id="@+id/menstruel" android:layout_width="match_parent" android:layout_height="63dp" android:text="Cycle menstruel" />
+    <Button android:id="@+id/Carte" android:layout_width="match_parent" android:layout_height="69dp" android:text="Carte" />
+    <Button android:id="@+id/notification" android:layout_width="match_parent" android:layout_height="76dp" android:text="Notification" />
+
+
+</LinearLayout>
