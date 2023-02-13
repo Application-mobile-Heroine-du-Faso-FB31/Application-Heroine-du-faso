@@ -12,6 +12,9 @@
         android:theme="@style/Theme.HeroineDuFaso"
         tools:targetApi="31">
         <activity
+            android:name=".VerificationActivityUser"
+            android:exported="false" />
+        <activity
             android:name=".HomePageUser"
             android:exported="false" />
         <activity

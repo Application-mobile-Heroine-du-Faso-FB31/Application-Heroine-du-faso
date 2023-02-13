@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 public class LoginPageUser extends AppCompatActivity {
 
-    private Button login;
-    private Button inscription;
+    private Button sendVerificationCodeBtn;
+//    private Button inscription;
     private EditText phoneNumber;
 
     @Override
@@ -20,16 +20,16 @@ public class LoginPageUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page_user);
 
-        login = (Button) findViewById(R.id.login_btn_login_page_user);
-        inscription = (Button) findViewById(R.id.inscription_btn_login_page_user);
+        sendVerificationCodeBtn = (Button) findViewById(R.id.login_btn_login_page_user);
+//        inscription = (Button) findViewById(R.id.inscription_btn_login_page_user);
         phoneNumber = (EditText) findViewById(R.id.phone_number_input_login_page);
 
 
-        inscription.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginPageUser.this, SignUpPage.class));
-            }
-        });
+//        inscription.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(LoginPageUser.this, SignUpPage.class));
+//            }
+//        });
     }
 }
