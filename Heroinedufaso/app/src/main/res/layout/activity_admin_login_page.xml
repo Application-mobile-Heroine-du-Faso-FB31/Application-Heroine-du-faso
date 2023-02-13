@@ -38,7 +38,7 @@
         android:id="@+id/login_btn_admin_login_page"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#E91E63"
+        android:backgroundTint="#E37B9E"
         android:text="Connexion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
         android:id="@+id/imageView"
         android:layout_width="333dp"
         android:layout_height="244dp"
-        app:srcCompat="@drawable/icone_h_roine_du_faso"
+        app:srcCompat="@drawable/icone_heroine_du_faso"
         tools:layout_editor_absoluteX="36dp"
         tools:layout_editor_absoluteY="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

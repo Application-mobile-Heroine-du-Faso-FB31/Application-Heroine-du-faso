@@ -10,6 +10,7 @@
         android:id="@+id/user_btn_home_page"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="#E37B9E"
         android:text="Utilisatrice"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,6 +23,7 @@
         android:id="@+id/admin_btn_home_page"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="#E37B9E"
         android:text="Gestionnaire"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,6 +36,7 @@
         android:id="@+id/sp_health_btn_home_page"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="#E37B9E"
         android:text="Specialiste"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,5 +44,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.751" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="357dp"
+        android:layout_height="325dp"
+        app:srcCompat="@drawable/icone_heroine_du_faso"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="39dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
