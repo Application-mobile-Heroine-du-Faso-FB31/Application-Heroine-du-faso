@@ -8,6 +8,7 @@
         android:layout_height="203dp"
         tools:srcCompat="@drawable/icone_compte_noir_page_utilisateur" />
 
+    <!--
     <EditText
         android:id="@+id/Antecedent_page_creation"
         android:layout_width="match_parent"
@@ -17,6 +18,8 @@
         android:ems="10"
         android:hint="Antécédent médicale"
         android:inputType="textPersonName" />
+
+    -->
 
     <EditText
         android:id="@+id/Nom_page_creation"
@@ -46,12 +49,12 @@
         android:inputType="date" />
 
     <EditText
-        android:id="@+id/Adresse_page_creation"
+        android:id="@+id/ville_page_creation"
         android:layout_width="match_parent"
         android:layout_height="74dp"
         android:drawableLeft="@drawable/icone_adresse_creation_de_compte"
         android:ems="10"
-        android:hint="Adresse"
+        android:hint="Ville"
         android:inputType="textPostalAddress" />
 
     <Button
