@@ -79,7 +79,8 @@ public class LoginPageUser extends AppCompatActivity {
 
                 // has entered his mobile number or not.
 
-                if (TextUtils.isEmpty(edtPhone.getText().toString())) {
+                if (TextUtils.isEmpty(edtPhone.getText().toString())
+                  && edtPhone.getText().toString().trim().length() != 10) {
 
                     // when mobile number text field is empty
 

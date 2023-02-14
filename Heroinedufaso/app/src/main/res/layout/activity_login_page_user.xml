@@ -3,6 +3,7 @@
 
     xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
@@ -24,12 +25,14 @@
 
         android:layout_centerHorizontal="true"
 
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
 
-        android:hint="Enter your phone"
+        android:layout_marginTop="10dp"
 
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:hint="Entrez votre numero de telephone"
         android:importantForAutofill="no"
-
         android:inputType="phone" />
 
 
@@ -45,11 +48,18 @@
 
         android:layout_below="@id/idEdtPhoneNumber"
 
-        android:layout_margin="10dp"
 
-        android:text="Get OTP"
+        android:layout_marginStart="10dp"
 
-        android:textAllCaps="false" />
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:drawableLeft="@drawable/baseline_send_24"
+        android:text="Envoie du code de verification"
+
+        android:textAllCaps="false"
+        app:icon="@drawable/baseline_send_24"
+        app:iconGravity="textStart" />
 
 
 
@@ -65,12 +75,14 @@
 
         android:layout_below="@id/idBtnGetOtp"
 
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
 
-        android:hint="Enter OTP"
+        android:layout_marginTop="10dp"
 
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:hint="Code de verificition"
         android:importantForAutofill="no"
-
         android:inputType="phone" />
 
 
@@ -86,11 +98,15 @@
 
         android:layout_below="@id/idEdtOtp"
 
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
 
-        android:text="Verify OTP"
-
-        android:textAllCaps="false" />
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Connexion"
+        android:textAllCaps="false"
+        app:icon="@drawable/baseline_login_24"
+        app:iconGravity="textStart" />
 
 
 </RelativeLayout>
