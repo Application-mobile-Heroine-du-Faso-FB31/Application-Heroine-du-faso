@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "502213972978-okcgr6hnl8omamdg1uon4le65oaokn2c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.heroinedufaso",
+            "certificate_hash": "b491c48565e4170428f2e1b3854660faa20288ee"
+          }
+        },
+        {
+          "client_id": "502213972978-p32vjb5b7786kk7bldogbb9g0922arpj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.heroinedufaso",
+            "certificate_hash": "887877f369a9581205ca2e62134d5864c7a3e080"
+          }
+        },
+        {
           "client_id": "502213972978-d3h535qonlo1ap64937etshv21fbmdpm.apps.googleusercontent.com",
           "client_type": 3
         }
