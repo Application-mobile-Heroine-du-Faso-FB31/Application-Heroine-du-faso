@@ -34,9 +34,11 @@
         android:layout_width="match_parent"
         android:layout_height="63dp"
         android:backgroundTint="#E17B9C"
-        android:drawableLeft="@drawable/icone_consultation_page_utilisateur"
+        android:isScrollContainer="false"
         android:text="CONSULTATION"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:icon="@drawable/stethoscope_white_icon"
+        app:iconSize="60px" />
 
     <Button
         android:id="@+id/denoncer"
