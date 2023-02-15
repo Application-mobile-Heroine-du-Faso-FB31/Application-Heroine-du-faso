@@ -2,9 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -17,6 +15,9 @@
         android:theme="@style/Theme.HeroineDuFaso"
         tools:targetApi="31">
         <activity
+            android:name=".AdminHomePage"
+            android:exported="false" />
+        <activity
             android:name=".VerificationActivityUser"
             android:exported="false" />
         <activity
@@ -27,8 +28,7 @@
             android:exported="false" />
         <activity
             android:name=".LoginPageUser"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".AdminLoginPage"
             android:exported="false" />
@@ -41,8 +41,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
     </application>
 
 </manifest>
