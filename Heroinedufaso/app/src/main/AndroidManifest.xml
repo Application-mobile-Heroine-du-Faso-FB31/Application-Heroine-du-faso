@@ -15,6 +15,9 @@
         android:theme="@style/Theme.HeroineDuFaso"
         tools:targetApi="31">
         <activity
+            android:name=".WelcomePage"
+            android:exported="false" />
+        <activity
             android:name=".AdminHomePage"
             android:exported="false" />
         <activity

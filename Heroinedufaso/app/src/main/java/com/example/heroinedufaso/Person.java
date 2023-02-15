@@ -1,10 +1,11 @@
 package com.example.heroinedufaso;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Person {
     private String fullName;
-    private LocalDate birthday;
+    private String birthday;
     private String phoneNumber;
     private String city;
     private String role;
@@ -14,13 +15,15 @@ public class Person {
     public Person(){}
 
 
-    public Person(String fullName, LocalDate birthday, String phoneNumber, String city, String role) {
+    public Person(String fullName, String birthday, String city, String role, String uid) {
         this.fullName = fullName;
         this.birthday = birthday;
-        this.phoneNumber = phoneNumber;
         this.city = city;
         this.role = role;
+        this.uid = uid;
     }
+
+
 
     public String getFullName() {
         return fullName;
@@ -30,11 +33,11 @@ public class Person {
         this.fullName = fullName;
     }
 
-    public LocalDate getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -69,4 +72,9 @@ public class Person {
     public void setUid(String uid) {
         this.uid = uid;
     }
+
+    public String toString(){
+        return "nom complet : " + fullName + " id : " + uid;
+    }
+
 }

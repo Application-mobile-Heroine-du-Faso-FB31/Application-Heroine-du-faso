@@ -19,6 +19,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminLoginPage extends AppCompatActivity {
 
@@ -27,6 +35,13 @@ public class AdminLoginPage extends AppCompatActivity {
     private Button loginBtn;
 
     private FirebaseAuth mAuth;
+
+    private String userID;
+
+    private ArrayList<Manager> managerList = new ArrayList<>();
+
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
 
     public void onStart() {
         super.onStart();
@@ -47,8 +62,12 @@ public class AdminLoginPage extends AppCompatActivity {
         passwordInput = (EditText) findViewById(R.id.password_input_admin_login_page);
         loginBtn = (Button) findViewById(R.id.login_btn_admin_login_page);
 
+
+
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("Manager");
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +77,9 @@ public class AdminLoginPage extends AppCompatActivity {
                 login(email, password);
             }
         });
+
+
+        getdata();
 
 
 
@@ -77,6 +99,7 @@ public class AdminLoginPage extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            userID = user.getUid().toString().trim();
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -88,10 +111,47 @@ public class AdminLoginPage extends AppCompatActivity {
                     }
 
                     private void updateUI(FirebaseUser user) {
+
+                        Intent intent = new Intent(new Intent(AdminLoginPage.this, SignUpPage.class));
+
+                        intent.putExtra("role", "manager");
+                        intent.putExtra("email", emailInput.getText().toString().trim());
+                        intent.putExtra("uid", userID);
                         emailInput.setText("");
                         passwordInput.setText("");
-                        startActivity(new Intent(AdminLoginPage.this, AdminHomePage.class));
+
+                        startActivity(intent);
                     }
                 });
+    }
+
+    private void getdata() {
+
+        // calling add value event listener method
+        // for getting the values from database.
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // this method is call to get the realtime
+                // updates in the data.
+                // this method is called when the data is
+                // changed in our Firebase console.
+                // below line is for getting the data from
+                // snapshot of our database.
+//                Manager manager = snapshot.getValue(Manager.class);
+//                Log.i(TAG, "manager uid : " + manager.getUid());
+
+                // after getting the value we are setting
+                // our value to our text view in below line.
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // calling on cancelled method when we receive
+                // any error or we are not able to get the data.
+                Toast.makeText(AdminLoginPage.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

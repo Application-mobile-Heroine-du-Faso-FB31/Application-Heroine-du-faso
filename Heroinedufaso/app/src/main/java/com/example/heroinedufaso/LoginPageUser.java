@@ -86,7 +86,7 @@ public class LoginPageUser extends AppCompatActivity {
 
                     // displaying a toast message.
 
-                    Toast.makeText(LoginPageUser.this, "Please enter a valid phone number.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPageUser.this, "SVP Entrez un numéro de telephone valide", Toast.LENGTH_SHORT).show();
 
                 } else {
 
@@ -122,7 +122,7 @@ public class LoginPageUser extends AppCompatActivity {
 
                     // a message to user to enter OTP
 
-                    Toast.makeText(LoginPageUser.this, "Please enter OTP", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPageUser.this, "SVP Entrer le code de verificiation", Toast.LENGTH_SHORT).show();
 
                 } else {
 
@@ -163,6 +163,9 @@ public class LoginPageUser extends AppCompatActivity {
                             // we are sending our user to new activity.
 
                             Intent i = new Intent(LoginPageUser.this, HomePageUser.class);
+
+                            i.putExtra("role", "user");
+                            i.putExtra("phoneNumber","+1" +  edtPhone.getText().toString().trim());
 
                             startActivity(i);
 

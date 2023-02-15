@@ -30,23 +30,26 @@
         android:hint="Nom complet"
         android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/Numero_telephone_page_creation"
-        android:layout_width="match_parent"
-        android:layout_height="67dp"
-        android:drawableLeft="@drawable/icone_numero_creation_de_compte"
-        android:ems="10"
-        android:hint="Numéro de téléphone"
-        android:inputType="phone" />
+<!--    <EditText-->
+<!--        android:id="@+id/Numero_telephone_page_creation"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="67dp"-->
+<!--        android:drawableLeft="@drawable/icone_numero_creation_de_compte"-->
+<!--        android:ems="10"-->
+<!--        android:hint="Numéro de téléphone"-->
+<!--        android:inputType="phone" />-->
 
-    <EditText
-        android:id="@+id/Date_de_naissance_page_creation"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:drawableLeft="@drawable/icone_naissance_page_creation_de_compte"
-        android:ems="10"
-        android:hint="Date de naissance"
-        android:inputType="date" />
+<!--    <EditText-->
+<!--        android:id="@+id/Date_de_naissance_page_creation"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="64dp"-->
+<!--        android:drawableLeft="@drawable/icone_naissance_page_creation_de_compte"-->
+<!--        android:ems="10"-->
+<!--        android:hint="Date de naissance"-->
+<!--        android:inputType="date" />-->
+
+
+
 
     <EditText
         android:id="@+id/ville_page_creation"
@@ -58,16 +61,27 @@
         android:inputType="textPostalAddress" />
 
     <Button
+        android:id="@+id/birthday_input_page_creation"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Date de naissance"
+        app:icon="@drawable/baseline_calendar_24" />
+
+    <Button
         android:id="@+id/Vocal_btn_page_creation"
         android:layout_width="match_parent"
         android:layout_height="67dp"
         android:backgroundTint="#E37B9E"
-        android:text="Enregistrement vocal" />
+        android:text="Enregistrement vocal"
+        app:icon="@drawable/baseline_keyboard_voice_24" />
 
     <Button
         android:id="@+id/Valider_btn_page_creation"
         android:layout_width="match_parent"
         android:layout_height="69dp"
         android:backgroundTint="#E37B9E"
-        android:text="Création du compte" />
+        android:text="Création du compte"
+        app:icon="@drawable/baseline_app_registration_24" />
 </LinearLayout>
