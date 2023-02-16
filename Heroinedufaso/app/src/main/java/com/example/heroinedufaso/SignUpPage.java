@@ -87,7 +87,7 @@ public class SignUpPage extends AppCompatActivity  implements
                 && birthdayInput != null){
                         Intent i = new Intent(SignUpPage.this, HomePageUser.class);
                         startActivity(i);
-                        finish();
+                        //finish();
                 }
                 else{
                     Toast.makeText(SignUpPage.this,
