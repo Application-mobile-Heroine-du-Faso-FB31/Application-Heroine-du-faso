@@ -103,9 +103,11 @@ public class SignUpPage extends AppCompatActivity  implements
     }
 
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String date = month + "/" + dayOfMonth + "/" + year;
+        String date = dayOfMonth + "/" + month + "/" + year;
 
         birthdayInput = date;
+
+        birthday.setText(birthdayInput);
     }
 
 }

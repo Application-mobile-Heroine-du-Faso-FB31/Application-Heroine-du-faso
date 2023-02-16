@@ -79,7 +79,7 @@ public class AdminLoginPage extends AppCompatActivity {
         });
 
 
-        getdata();
+//        getdata();
 
 
 
