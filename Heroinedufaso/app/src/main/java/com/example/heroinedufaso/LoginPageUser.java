@@ -158,7 +158,7 @@ public class LoginPageUser extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
 
-                            // if the code is correct and the task is successful
+                            // if the code is correct and the task is succ/essful
 
                             // we are sending our user to new activity.
 

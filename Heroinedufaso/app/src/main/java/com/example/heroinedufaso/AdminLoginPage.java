@@ -112,6 +112,7 @@ public class AdminLoginPage extends AppCompatActivity {
 
                     private void updateUI(FirebaseUser user) {
 
+
                         Intent intent = new Intent(new Intent(AdminLoginPage.this, SignUpPage.class));
 
                         intent.putExtra("role", "manager");

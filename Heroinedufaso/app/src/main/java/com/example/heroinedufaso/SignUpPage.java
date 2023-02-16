@@ -15,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Calendar;
@@ -52,6 +53,17 @@ public class SignUpPage extends AppCompatActivity  implements
 
         DAO dao = new DAO();
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            user.reload();
+            Log.i(TAG, user.getUid() + " is signed in");
+
+        } else {
+            // No user is signed in
+            Log.i(TAG, "No user is signed in");
+        }
+
         birthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,54 +77,9 @@ public class SignUpPage extends AppCompatActivity  implements
                 if(!TextUtils.isEmpty(fullName.getText().toString().trim())
                 && !TextUtils.isEmpty(city.getText().toString().trim())
                 && birthdayInput != null){
-                    if(role.equals("manager")){
-                        Manager manager = new Manager(
-                                fullName.getText().toString().trim(),
-                                birthdayInput,
-                                city.getText().toString().trim(),
-                                role, b.getString("uid"), b.getString("email")
-
-                        );
-
-
-                        dao.add(manager).addOnSuccessListener(suc ->{
-                            Toast.makeText(SignUpPage.this,
-                                    "Info enregistrer", Toast.LENGTH_SHORT).show();
-                        }).addOnFailureListener(er -> {
-                            Toast.makeText(SignUpPage.this,
-                                    er.getMessage(), Toast.LENGTH_SHORT).show();
-                        });
-
-                        Intent i = new Intent(SignUpPage.this, WelcomePage.class);
-                        i.putExtra("fullname", manager.getFullName());
+                        Intent i = new Intent(SignUpPage.this, HomePageUser.class);
                         startActivity(i);
                         finish();
-
-
-
-                    } else if(role.equals("user")){
-                        User user = new User(
-                                fullName.getText().toString().trim(),
-                                birthdayInput,
-                                city.getText().toString().trim(),
-                                role,
-                                b.getString("phoneNumber")
-                        );
-
-                        dao.add(user).addOnSuccessListener(suc ->{
-                            Toast.makeText(SignUpPage.this,
-                                    "Info enregistrer", Toast.LENGTH_SHORT).show();
-                        }).addOnFailureListener(er -> {
-                            Toast.makeText(SignUpPage.this,
-                                    er.getMessage(), Toast.LENGTH_SHORT).show();
-                        });
-
-                        Intent i = new Intent(SignUpPage.this, WelcomePage.class);
-                        i.putExtra("fullname", user.getFullName());
-                        startActivity(i);
-                        finish();
-                    }
-
                 }
                 else{
                     Toast.makeText(SignUpPage.this,
