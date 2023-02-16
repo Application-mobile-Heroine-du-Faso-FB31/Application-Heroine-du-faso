@@ -1,3 +1,11 @@
+//***************************************************************************************/
+//        *    Title: Date Picker Dialog on Android
+//        *    Author: Mitch
+//        *    Date: 2020
+//        *    Code version: 1.0
+//        *    Availability: https://www.youtube.com/watch?v=AdTzD96AhE0
+//        *
+//        ***************************************************************************************/
 package com.example.heroinedufaso;
 
 import static android.content.ContentValues.TAG;

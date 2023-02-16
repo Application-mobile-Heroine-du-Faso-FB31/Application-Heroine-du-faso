@@ -1,3 +1,12 @@
+//***************************************************************************************/
+//        *    Title: Firebase Authentication with Phone Number OTP in Android
+//        *    Author: Geek for geek
+//        *    Date: 2020
+//        *    Code version: 1.0
+//        *    Availability: https://www.geeksforgeeks.org/firebase-authentication-with-phone-number-otp-in-android/amp/
+//        *
+//        ***************************************************************************************/
+
 package com.example.heroinedufaso;
 
 import androidx.annotation.NonNull;
