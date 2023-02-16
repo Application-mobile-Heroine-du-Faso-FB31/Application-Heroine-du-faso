@@ -162,7 +162,7 @@ public class LoginPageUser extends AppCompatActivity {
 
                             // we are sending our user to new activity.
 
-                            Intent i = new Intent(LoginPageUser.this, HomePageUser.class);
+                            Intent i = new Intent(LoginPageUser.this, SignUpPage.class);
 
                             i.putExtra("role", "user");
                             i.putExtra("phoneNumber","+1" +  edtPhone.getText().toString().trim());
