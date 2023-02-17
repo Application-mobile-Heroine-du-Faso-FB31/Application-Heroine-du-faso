@@ -18,13 +18,13 @@ public class DAO {
 
     private DatabaseReference databaseReference;
 
-    public DAO(){
+    public DAO(String uid){
         FirebaseDatabase db = FirebaseDatabase.getInstance();
-        databaseReference = db.getReference(Manager.class.getSimpleName());
+        databaseReference = db.getReference("users").child(uid);
     }
 
-    public Task<Void> add(Manager manager){
-        return databaseReference.push().setValue(manager);
+    public Task<Void> add(Person person){
+        return databaseReference.push().setValue(person);
     }
 
     public Task<Void> add(User user){

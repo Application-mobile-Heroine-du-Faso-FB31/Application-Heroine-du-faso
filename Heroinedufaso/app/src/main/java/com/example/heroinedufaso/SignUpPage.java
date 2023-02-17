@@ -25,6 +25,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -37,6 +39,9 @@ public class SignUpPage extends AppCompatActivity  implements
 
     private String birthdayInput;
     private String role;
+
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
 
 
     @Override
@@ -57,20 +62,10 @@ public class SignUpPage extends AppCompatActivity  implements
             role = b.getString("role");
         }
 
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
 
-        DAO dao = new DAO();
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            // User is signed in
-            user.reload();
-            Log.i(TAG, user.getUid() + " is signed in");
-
-        } else {
-            // No user is signed in
-            Log.i(TAG, "No user is signed in");
-        }
+        DAO dao = new DAO(currentUser.getUid());
 
         birthday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,9 +80,39 @@ public class SignUpPage extends AppCompatActivity  implements
                 if(!TextUtils.isEmpty(fullName.getText().toString().trim())
                 && !TextUtils.isEmpty(city.getText().toString().trim())
                 && birthdayInput != null){
+
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference("users");
+
+                    FirebaseUser currentUser = mAuth.getCurrentUser();
+
+                    Person person = new Person(
+                            birthdayInput,
+                            city.getText().toString().trim(),
+                            fullName.getText().toString(),
+                            role,
+                            currentUser.getUid()
+                    );
+
+                    dao.add(person).addOnSuccessListener(suc -> {
+                        Toast.makeText(SignUpPage.this, "Donnée de l'utilisatrice sauvegarder.",
+                                Toast.LENGTH_SHORT).show();
+                    }).addOnFailureListener(err -> {
+                        Toast.makeText(SignUpPage.this, "Echec de sauvegarde " + err.getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                    });
+
+                    if (role.equals("manager")){
+
+
+                        startActivity(new Intent(SignUpPage.this, AdminHomePage.class));
+                    }else{
                         Intent i = new Intent(SignUpPage.this, HomePageUser.class);
                         startActivity(i);
                         //finish();
+                    }
+
+
                 }
                 else{
                     Toast.makeText(SignUpPage.this,

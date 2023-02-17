@@ -43,13 +43,48 @@ public class AdminLoginPage extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
 
-    public void onStart() {
+    private List<Person> users = new ArrayList<>();
+
+    @Override
+    protected void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if(currentUser != null &&
+//                currentUser.getUid().toString().equals("jA8x1JtbPhRK1ssUQHrQBgAO5l52")
+//        ){
+//            Intent intent = new Intent(new Intent(AdminLoginPage.this, AdminHomePage.class));
+//            startActivity(intent);
+//            finish();
+//        }
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            currentUser.reload();
-        }
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference("users")
+                .child(currentUser.getUid());
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot: snapshot.getChildren())
+                {
+//                    Log.i(TAG, "datasnapshot : " + dataSnapshot.getValue().toString());
+
+                    Person user = dataSnapshot.getValue(Person.class);
+
+//                    Log.i(TAG, "user fullname : " + user.getFullName());
+                    users.add(user);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 
@@ -64,10 +99,14 @@ public class AdminLoginPage extends AppCompatActivity {
 
 
 
+
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("Manager");
+        databaseReference = firebaseDatabase.getReference("users");
+
+
+
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +118,6 @@ public class AdminLoginPage extends AppCompatActivity {
         });
 
 
-//        getdata();
 
 
 
@@ -87,9 +125,9 @@ public class AdminLoginPage extends AppCompatActivity {
     }
 
     public void login(String email, String password){
-
-        Log.i(TAG, "login: email " + email);
-        Log.i(TAG, "login: password " + password);
+//
+//        Log.i(TAG, "login: email " + email);
+//        Log.i(TAG, "login: password " + password);
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -99,12 +137,11 @@ public class AdminLoginPage extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            userID = user.getUid().toString().trim();
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(AdminLoginPage.this, "Authentication failed.",
+                            Toast.makeText(AdminLoginPage.this, "Echec de connexion.",
                                     Toast.LENGTH_SHORT).show();
 //                            updateUI(null);
                         }
@@ -112,47 +149,23 @@ public class AdminLoginPage extends AppCompatActivity {
 
                     private void updateUI(FirebaseUser user) {
 
+                       if(!users.isEmpty()) {
+                           if(user.getUid().equals(users.get(0).getUid())){
+                               Intent i = new Intent(AdminLoginPage.this, AdminHomePage.class);
+                               startActivity(i);
+                               finish();
+                           }
+                       } else{
+                           Intent i = new Intent(AdminLoginPage.this, SignUpPage.class);
+                           i.putExtra("role", "manager");
+                           startActivity(i);
+                           finish();
+                       }
 
-                        Intent intent = new Intent(new Intent(AdminLoginPage.this, SignUpPage.class));
 
-                        intent.putExtra("role", "manager");
-                        intent.putExtra("email", emailInput.getText().toString().trim());
-                        intent.putExtra("uid", userID);
-                        emailInput.setText("");
-                        passwordInput.setText("");
 
-                        startActivity(intent);
                     }
                 });
     }
 
-    private void getdata() {
-
-        // calling add value event listener method
-        // for getting the values from database.
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // this method is call to get the realtime
-                // updates in the data.
-                // this method is called when the data is
-                // changed in our Firebase console.
-                // below line is for getting the data from
-                // snapshot of our database.
-//                Manager manager = snapshot.getValue(Manager.class);
-//                Log.i(TAG, "manager uid : " + manager.getUid());
-
-                // after getting the value we are setting
-                // our value to our text view in below line.
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // calling on cancelled method when we receive
-                // any error or we are not able to get the data.
-                Toast.makeText(AdminLoginPage.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 }
