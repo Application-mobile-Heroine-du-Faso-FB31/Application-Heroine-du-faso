@@ -23,11 +23,8 @@ public class DAO {
         databaseReference = db.getReference("users").child(uid);
     }
 
-    public Task<Void> add(Person person){
-        return databaseReference.push().setValue(person);
-    }
-
     public Task<Void> add(User user){
         return databaseReference.push().setValue(user);
     }
+
 }

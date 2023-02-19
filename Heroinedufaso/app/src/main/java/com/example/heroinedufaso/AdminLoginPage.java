@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,14 +35,13 @@ public class AdminLoginPage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
-    private String userID;
 
     private ArrayList<Manager> managerList = new ArrayList<>();
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
 
-    private List<Person> users = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
     @Override
     protected void onStart() {
@@ -60,7 +58,6 @@ public class AdminLoginPage extends AppCompatActivity {
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("users")
                 .child(currentUser.getUid());
 
@@ -72,7 +69,7 @@ public class AdminLoginPage extends AppCompatActivity {
                 {
 //                    Log.i(TAG, "datasnapshot : " + dataSnapshot.getValue().toString());
 
-                    Person user = dataSnapshot.getValue(Person.class);
+                    User user = dataSnapshot.getValue(User.class);
 
 //                    Log.i(TAG, "user fullname : " + user.getFullName());
                     users.add(user);
@@ -85,6 +82,13 @@ public class AdminLoginPage extends AppCompatActivity {
 
             }
         });
+
+        if(databaseReference != null){
+            Intent i = new Intent(AdminLoginPage.this, HomePageUser.class);
+            startActivity(i);
+            finish();
+        }
+
     }
 
 
@@ -143,7 +147,6 @@ public class AdminLoginPage extends AppCompatActivity {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(AdminLoginPage.this, "Echec de connexion.",
                                     Toast.LENGTH_SHORT).show();
-//                            updateUI(null);
                         }
                     }
 
@@ -151,7 +154,7 @@ public class AdminLoginPage extends AppCompatActivity {
 
                        if(!users.isEmpty()) {
                            if(user.getUid().equals(users.get(0).getUid())){
-                               Intent i = new Intent(AdminLoginPage.this, AdminHomePage.class);
+                               Intent i = new Intent(AdminLoginPage.this, HomePageUser.class);
                                startActivity(i);
                                finish();
                            }

@@ -21,7 +21,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -67,56 +66,52 @@ public class LoginPageUser extends AppCompatActivity {
 
     private String verificationId;
 
-    private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
 
-    private List<Person> users = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
     @Override
     protected void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if(currentUser != null &&
-//                currentUser.getUid().toString().equals("jA8x1JtbPhRK1ssUQHrQBgAO5l52")
-//        ){
-//            Intent intent = new Intent(new Intent(AdminLoginPage.this, AdminHomePage.class));
-//            startActivity(intent);
-//            finish();
-//        }
-
-
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
+        if(currentUser != null){
+            databaseReference = FirebaseDatabase.getInstance().getReference("users")
+                    .child(currentUser.getUid());
 
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("users")
-                .child(currentUser.getUid());
+//                    Log.i(TAG, "on start function android " + currentUser.getUid());
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot dataSnapshot: snapshot.getChildren())
+                    {
+                        User user = dataSnapshot.getValue(User.class);
+                        users.add(user);
+                    }
+                }
 
-                Log.i(TAG, "on start function android " + currentUser.getUid());
-
-                for (DataSnapshot dataSnapshot: snapshot.getChildren())
-                {
-                    Log.i(TAG, "datasnapshot : " + dataSnapshot.getValue().toString());
-
-                    Person user = dataSnapshot.getValue(Person.class);
-
-                    Log.i(TAG, "user fullname : " + user.getFullName());
-                    users.add(user);
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
                 }
+            });
+
+
+            if(databaseReference != null){
+                Intent i = new Intent(LoginPageUser.this, HomePageUser.class);
+                startActivity(i);
+                finish();
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+        }
+
+
+
+
     }
 
 
@@ -145,7 +140,6 @@ public class LoginPageUser extends AppCompatActivity {
         generateOTPBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
-
             public void onClick(View v) {
 
                 // below line is for checking whether the user
@@ -254,6 +248,7 @@ public class LoginPageUser extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
+
 
         if (!users.isEmpty()) {
             if (user.getUid().equals(users.get(0).getUid())) {
