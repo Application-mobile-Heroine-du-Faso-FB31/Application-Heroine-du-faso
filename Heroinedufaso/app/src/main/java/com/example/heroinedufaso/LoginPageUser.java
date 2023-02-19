@@ -80,17 +80,17 @@ public class LoginPageUser extends AppCompatActivity {
             databaseReference = FirebaseDatabase.getInstance().getReference("users")
                     .child(currentUser.getUid());
 
+
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-//                    Log.i(TAG, "on start function android " + currentUser.getUid());
 
                     for (DataSnapshot dataSnapshot: snapshot.getChildren())
                     {
                         User user = dataSnapshot.getValue(User.class);
                         users.add(user);
                     }
+
                 }
 
                 @Override
@@ -100,11 +100,6 @@ public class LoginPageUser extends AppCompatActivity {
             });
 
 
-            if(databaseReference != null){
-                Intent i = new Intent(LoginPageUser.this, HomePageUser.class);
-                startActivity(i);
-                finish();
-            }
 
 
         }

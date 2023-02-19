@@ -83,11 +83,6 @@ public class AdminLoginPage extends AppCompatActivity {
             }
         });
 
-        if(databaseReference != null){
-            Intent i = new Intent(AdminLoginPage.this, HomePageUser.class);
-            startActivity(i);
-            finish();
-        }
 
     }
 
