@@ -9,6 +9,17 @@
         app:srcCompat="@drawable/icone_compte_noir_page_utilisateur" />
 
     <Button
+        android:id="@+id/profile_usr_home_btn"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:backgroundTint="#E37B9E"
+        android:drawableLeft="@drawable/icone_chat_page_utilisateur"
+        android:text="PROFIL"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FBFBFB"
+        app:icon="@drawable/baseline_person_24" />
+
+    <Button
         android:id="@+id/chat"
         android:layout_width="match_parent"
         android:layout_height="63dp"
