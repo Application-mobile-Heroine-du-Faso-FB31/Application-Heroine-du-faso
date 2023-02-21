@@ -35,7 +35,9 @@ public class ProfileUserActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
 
-    private List<User> users = new ArrayList<>();
+    private User currentUser = new User();
+
+    FirebaseUser firebaseCurrentUser;
 
     @Override
     protected void onStart() {
@@ -43,40 +45,41 @@ public class ProfileUserActivity extends AppCompatActivity {
 
 
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        firebaseCurrentUser = mAuth.getCurrentUser();
 
-        if(currentUser != null){
-            databaseReference = FirebaseDatabase.getInstance().getReference("users")
-                    .child(currentUser.getUid());
+        // Read from the database
 
+        if(firebaseCurrentUser != null){
+            databaseReference = FirebaseDatabase.getInstance().getReference("users").
+                    child(firebaseCurrentUser.getUid());
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    User user = dataSnapshot.getValue(User.class);
 
-//                    Log.i(TAG, "on start function android " + currentUser.getUid());
+                    currentUser.setPhoneNumber(user.getPhoneNumber());
+                    currentUser.setBirthday(user.getBirthday());
+                    currentUser.setCity(user.getCity());
+                    currentUser.setFullName(user.getFullName());
+                    currentUser.setRole(user.getRole());
 
-                    for (DataSnapshot dataSnapshot: snapshot.getChildren())
-                    {
-//                        Log.i(TAG, "datasnapshot : " + dataSnapshot.getValue().toString());
+                    Log.d(TAG, "Full name : " + currentUser.getFullName());
 
-                        User user = dataSnapshot.getValue(User.class);
-                        fullName.setText(user.getFullName());
-                        city.setText(user.getCity());
-                        birthday.setText(user.getBirthday());
+                    phoneNumber.setText(currentUser.getPhoneNumber());
+                    fullName.setText(currentUser.getFullName());
+                    city.setText(currentUser.getCity());
+                    birthday.setText(currentUser.getBirthday());
 
-                        Log.i(TAG, "user fullname : " + user.getFullName());
-                        users.add(user);
-
-                    }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
                 }
             });
-
-
         }
 
 
@@ -84,12 +87,12 @@ public class ProfileUserActivity extends AppCompatActivity {
 
     }
 
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_user);
-        FirebaseUser currentUser = mAuth.getCurrentUser();
 
 //        backBtn = findViewById(R.id.back_btn_profile);
         fullName = findViewById(R.id.fullname_profile);
@@ -106,9 +109,7 @@ public class ProfileUserActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        Log.i(TAG, "current user : " + currentUser.getEmail());
-
-        phoneNumber.setText(currentUser.getPhoneNumber());
+//        Log.i(TAG, "current user : " + currentUser.getFullName());
 
 
     }

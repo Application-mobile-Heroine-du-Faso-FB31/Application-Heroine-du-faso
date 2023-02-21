@@ -33,57 +33,11 @@ public class AdminLoginPage extends AppCompatActivity {
     private EditText passwordInput;
     private Button loginBtn;
 
-    private FirebaseAuth mAuth;
-
-
-    private ArrayList<Manager> managerList = new ArrayList<>();
-
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
-
-    private List<User> users = new ArrayList<>();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if(currentUser != null &&
-//                currentUser.getUid().toString().equals("jA8x1JtbPhRK1ssUQHrQBgAO5l52")
-//        ){
-//            Intent intent = new Intent(new Intent(AdminLoginPage.this, AdminHomePage.class));
-//            startActivity(intent);
-//            finish();
-//        }
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("users")
-                .child(currentUser.getUid());
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot dataSnapshot: snapshot.getChildren())
-                {
-//                    Log.i(TAG, "datasnapshot : " + dataSnapshot.getValue().toString());
-
-                    User user = dataSnapshot.getValue(User.class);
-
-//                    Log.i(TAG, "user fullname : " + user.getFullName());
-                    users.add(user);
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
     }
 
 
@@ -99,12 +53,6 @@ public class AdminLoginPage extends AppCompatActivity {
 
 
 
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("users");
-
-
 
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -116,17 +64,9 @@ public class AdminLoginPage extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
     }
 
     public void login(String email, String password){
-//
-//        Log.i(TAG, "login: email " + email);
-//        Log.i(TAG, "login: password " + password);
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -146,22 +86,10 @@ public class AdminLoginPage extends AppCompatActivity {
                     }
 
                     private void updateUI(FirebaseUser user) {
-
-                       if(!users.isEmpty()) {
-                           if(user.getUid().equals(users.get(0).getUid())){
-                               Intent i = new Intent(AdminLoginPage.this, HomePageUser.class);
-                               startActivity(i);
-                               finish();
-                           }
-                       } else{
-                           Intent i = new Intent(AdminLoginPage.this, SignUpPage.class);
-                           i.putExtra("role", "manager");
-                           startActivity(i);
-                           finish();
-                       }
-
-
-
+                        Intent i = new Intent(AdminLoginPage.this, SignUpPage.class);
+                        i.putExtra("role", "manager");
+                        startActivity(i);
+                        finish();
                     }
                 });
     }

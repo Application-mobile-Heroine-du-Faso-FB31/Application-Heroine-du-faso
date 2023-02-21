@@ -17,10 +17,11 @@ public class User {
 
 
 
-    public User(String birthday, String city, String fullName, String role, String uid){
+    public User(String birthday, String city, String fullName, String phoneNumber, String role, String uid){
         this.fullName = fullName;
         this.birthday = birthday;
         this.city = city;
+        this.phoneNumber = phoneNumber;
         this.role = role;
         this.uid = uid;
     }

@@ -83,7 +83,8 @@ public class SignUpPage extends AppCompatActivity  implements
                 && birthdayInput != null){
 
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference myRef = database.getReference("users");
+                    DatabaseReference myRef = database.getReference("users").
+                            child(currentUser.getUid());
 
                     FirebaseUser currentUser = mAuth.getCurrentUser();
 
@@ -91,28 +92,20 @@ public class SignUpPage extends AppCompatActivity  implements
                             birthdayInput,
                             city.getText().toString().trim(),
                             fullName.getText().toString(),
+                            currentUser.getPhoneNumber(),
                             role,
                             currentUser.getUid()
                     );
 
-                    dao.add(user).addOnSuccessListener(suc -> {
-                        Toast.makeText(SignUpPage.this, "Donnée de l'utilisatrice sauvegarder.",
-                                Toast.LENGTH_SHORT).show();
-                    }).addOnFailureListener(err -> {
-                        Toast.makeText(SignUpPage.this, "Echec de sauvegarde " + err.getMessage(),
-                                Toast.LENGTH_SHORT).show();
-                    });
+                    myRef.setValue(user);
 
-                    if (role.equals("manager")){
-
-
+                    if(role.equals("manager")){
                         startActivity(new Intent(SignUpPage.this, AdminHomePage.class));
-                    }else{
-                        Intent i = new Intent(SignUpPage.this, HomePageUser.class);
-                        startActivity(i);
-                        //finish();
+                        finish();
+                    }else if(role.equals("user")){
+                        startActivity(new Intent(SignUpPage.this, HomePageUser.class));
+                        finish();
                     }
-
 
                 }
                 else{

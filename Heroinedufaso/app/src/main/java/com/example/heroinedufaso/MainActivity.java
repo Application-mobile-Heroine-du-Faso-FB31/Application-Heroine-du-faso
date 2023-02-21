@@ -24,8 +24,10 @@ public class MainActivity extends AppCompatActivity {
     private Button userBtn;
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private FirebaseUser user;
+    private FirebaseUser firebaseCurrentUser = mAuth.getCurrentUser();
     private DatabaseReference databaseReference;
+
+    private User currentUser = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +51,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                user = mAuth.getCurrentUser();
-
-                if(user != null){
+                if(firebaseCurrentUser != null){
 
                     databaseReference = FirebaseDatabase.getInstance().getReference("users")
-                            .child(user.getUid());
+                            .child(firebaseCurrentUser.getUid());
 
                     databaseReference.addValueEventListener(new ValueEventListener() {
                         @Override

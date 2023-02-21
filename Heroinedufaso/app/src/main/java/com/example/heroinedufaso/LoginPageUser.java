@@ -44,17 +44,13 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginPageUser extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-
-
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     // variable for our text input
 
     // field for phone and OTP.
 
     private EditText edtPhone, edtOTP;
-
-
 
     // buttons for generating OTP and verifying OTP
 
@@ -68,28 +64,31 @@ public class LoginPageUser extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
 
-    private List<User> users = new ArrayList<>();
+    private FirebaseUser firebaseCurrentUser = mAuth.getCurrentUser();
+
+    private User currentUser = new User();
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if(currentUser != null){
+        if(firebaseCurrentUser != null){
             databaseReference = FirebaseDatabase.getInstance().getReference("users")
-                    .child(currentUser.getUid());
+                    .child(firebaseCurrentUser.getUid());
 
 
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    for (DataSnapshot dataSnapshot: snapshot.getChildren())
-                    {
-                        User user = dataSnapshot.getValue(User.class);
-                        users.add(user);
-                    }
+                    User user = snapshot.getValue(User.class);
+
+                    currentUser.setFullName(user.getFullName());
+                    currentUser.setPhoneNumber(user.getPhoneNumber());
+                    currentUser.setCity(user.getCity());
+                    currentUser.setRole(user.getRole());
+                    currentUser.setBirthday(user.getBirthday());
 
                 }
 
@@ -116,8 +115,6 @@ public class LoginPageUser extends AppCompatActivity {
         setContentView(R.layout.activity_login_page_user);
 
 
-
-        mAuth = FirebaseAuth.getInstance();
 
         // initializing variables for button and Edittext.
 
@@ -245,12 +242,11 @@ public class LoginPageUser extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
 
 
-        if (!users.isEmpty()) {
-            if (user.getUid().equals(users.get(0).getUid())) {
-                Intent i = new Intent(LoginPageUser.this, HomePageUser.class);
-                startActivity(i);
-                finish();
-            }
+        if (currentUser.getUid().equals(firebaseCurrentUser.getUid())) {
+            Intent i = new Intent(LoginPageUser.this, HomePageUser.class);
+            startActivity(i);
+            finish();
+
         } else {
             Intent i = new Intent(LoginPageUser.this, SignUpPage.class);
             i.putExtra("role", "user");
