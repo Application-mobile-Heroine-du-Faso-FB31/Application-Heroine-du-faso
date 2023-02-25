@@ -94,22 +94,10 @@ public class ProfileUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_user);
 
-//        backBtn = findViewById(R.id.back_btn_profile);
         fullName = findViewById(R.id.fullname_profile);
         phoneNumber = findViewById(R.id.phone_number_txtV_profile);
         city = findViewById(R.id.city_txtV_profile);
         birthday = findViewById(R.id.birthday_txtV_profile);
-
-//        backBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(ProfileUserActivity.this, HomePageUser.class);
-//                startActivity(i);
-//                finish();
-//            }
-//        });
-
-//        Log.i(TAG, "current user : " + currentUser.getFullName());
 
 
     }

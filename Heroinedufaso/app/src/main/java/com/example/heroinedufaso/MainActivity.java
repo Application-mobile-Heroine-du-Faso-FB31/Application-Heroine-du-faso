@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button adminBtn;
@@ -26,10 +28,14 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseUser firebaseCurrentUser = mAuth.getCurrentUser();
-    private DatabaseReference databaseReference;
 
-
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(firebaseCurrentUser != null){
+            startActivity(new Intent(MainActivity.this, HomePageUser.class));
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,62 +45,21 @@ public class MainActivity extends AppCompatActivity {
         adminBtn = (Button) findViewById(R.id.admin_btn_home_page);
         healthSpecialistBtn = (Button) findViewById(R.id.sp_health_btn_home_page);
         userBtn = (Button) findViewById(R.id.user_btn_home_page);
-        final CustomProgressDialog dialog = new CustomProgressDialog(MainActivity.this);
 
 
         adminBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, AdminLoginPage.class));
-                //finish();
+                finish();
             }
         });
 
         userBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
-                if(firebaseCurrentUser != null){
-
-                    dialog.show();
-
-                    databaseReference = FirebaseDatabase.getInstance().getReference("users")
-                            .child(firebaseCurrentUser.getUid());
-
-
-                    databaseReference.addValueEventListener(new ValueEventListener() {
-
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                            if(snapshot.hasChildren()){
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        dialog.dismiss();
-                                    }
-                                }, 3000);
-                                startActivity(new Intent(MainActivity.this, HomePageUser.class));
-                            } else{
-                                startActivity(new Intent(MainActivity.this, LoginPageUser.class));
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
-
-
-                }
-
-
-                //finish();
+                startActivity(new Intent(MainActivity.this, LoginPageUser.class));
+                finish();
             }
         });
 

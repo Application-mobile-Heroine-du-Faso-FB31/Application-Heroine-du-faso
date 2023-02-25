@@ -90,7 +90,7 @@
         <Button
             android:id="@+id/Carte"
             android:layout_width="match_parent"
-            android:layout_height="69dp"
+            android:layout_height="63dp"
             android:backgroundTint="#DE7B99"
             android:drawableLeft="@drawable/icone_carte_page_utlisateur"
             android:text="CARTE"
@@ -100,12 +100,25 @@
         <Button
             android:id="@+id/notification"
             android:layout_width="match_parent"
-            android:layout_height="76dp"
+            android:layout_height="63dp"
             android:backgroundTint="#E07B9B"
             android:drawableLeft="@drawable/icone_notification_page_utilisateur"
             android:text="NOTIFICATION"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:icon="@drawable/baseline_notifications_active_24" />
+
+        <Button
+            android:id="@+id/sign_out_btn"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:backgroundTint="#E37B9E"
+            android:drawableLeft="@drawable/icone_chat_page_utilisateur"
+            android:text="DECONNEXION"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FBFBFB"
+            app:icon="@drawable/baseline_logout_24" />
+
+
 
     </LinearLayout>
 

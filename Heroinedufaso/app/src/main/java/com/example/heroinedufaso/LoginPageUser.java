@@ -62,50 +62,9 @@ public class LoginPageUser extends AppCompatActivity {
 
     private String verificationId;
 
-    private DatabaseReference databaseReference;
-
-    private FirebaseUser firebaseCurrentUser = mAuth.getCurrentUser();
-
-    private User currentUser = new User();
-
     @Override
     protected void onStart() {
         super.onStart();
-
-
-        if(firebaseCurrentUser != null){
-            databaseReference = FirebaseDatabase.getInstance().getReference("users")
-                    .child(firebaseCurrentUser.getUid());
-
-
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                    User user = snapshot.getValue(User.class);
-
-                    currentUser.setFullName(user.getFullName());
-                    currentUser.setPhoneNumber(user.getPhoneNumber());
-                    currentUser.setCity(user.getCity());
-                    currentUser.setRole(user.getRole());
-                    currentUser.setBirthday(user.getBirthday());
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-
-
-
-
-        }
-
-
-
-
     }
 
 
@@ -241,19 +200,12 @@ public class LoginPageUser extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
 
-
-        if (currentUser.getUid().equals(firebaseCurrentUser.getUid())) {
-            Intent i = new Intent(LoginPageUser.this, HomePageUser.class);
-            startActivity(i);
-            finish();
-
-        } else {
-            Intent i = new Intent(LoginPageUser.this, SignUpPage.class);
-            i.putExtra("role", "user");
-            startActivity(i);
-            finish();
-        }
-
+        Intent i = new Intent(LoginPageUser.this, SignUpPage.class);
+        i.putExtra("role", "user");
+        startActivity(i);
+        edtOTP.setText("");
+        edtPhone.setText("");
+        finish();
     }
 
 
@@ -384,15 +336,11 @@ public class LoginPageUser extends AppCompatActivity {
     private void verifyCode(String code) {
 
         // below line is used for getting
-
         // credentials from our verification id and code.
 
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
 
-
-
         // after getting credential we are
-
         // calling sign in method.
 
         signInWithCredential(credential);

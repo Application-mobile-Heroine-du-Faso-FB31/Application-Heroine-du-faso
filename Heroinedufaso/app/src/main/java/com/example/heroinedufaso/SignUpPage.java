@@ -8,12 +8,16 @@
 //        ***************************************************************************************/
 package com.example.heroinedufaso;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -22,8 +26,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
@@ -38,9 +45,39 @@ public class SignUpPage extends AppCompatActivity  implements
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
+
+
     @Override
     protected void onStart() {
         super.onStart();
+        FirebaseUser mAuthCurrentUser = mAuth.getCurrentUser();
+
+        if(mAuthCurrentUser != null){
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("users").
+                    child(mAuthCurrentUser.getUid());
+
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User user = snapshot.getValue(User.class);
+                    if(user != null){
+                        if(user.getUid().equals(mAuthCurrentUser.getUid())){
+                            startActivity(new Intent(SignUpPage.this, HomePageUser.class));
+                            finish();
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                    Log.i(TAG,"The read failed: " + error.getCode());
+                }
+            });
+        }
+
     }
 
 
@@ -65,8 +102,6 @@ public class SignUpPage extends AppCompatActivity  implements
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-
-        DAO dao = new DAO(currentUser.getUid());
 
         birthday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +135,7 @@ public class SignUpPage extends AppCompatActivity  implements
                     myRef.setValue(user);
 
                     if(role.equals("manager")){
-                        startActivity(new Intent(SignUpPage.this, AdminHomePage.class));
+                        startActivity(new Intent(SignUpPage.this, HomePageUser.class));
                         finish();
                     }else if(role.equals("user")){
                         startActivity(new Intent(SignUpPage.this, HomePageUser.class));
@@ -112,6 +147,10 @@ public class SignUpPage extends AppCompatActivity  implements
                     Toast.makeText(SignUpPage.this,
                             "Information incomplete", Toast.LENGTH_LONG).show();
                 }
+
+                fullName.setText("");
+                city.setText("");
+                birthday.setText("Date de naissance");
             }
         });
 
@@ -130,10 +169,7 @@ public class SignUpPage extends AppCompatActivity  implements
     }
 
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String date = dayOfMonth + "/" + month + "/" + year;
-
-        birthdayInput = date;
-
+        birthdayInput  = dayOfMonth + "/" + month + "/" + year;
         birthday.setText(birthdayInput);
     }
 
