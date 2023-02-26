@@ -20,6 +20,8 @@ public class HomePageUser extends AppCompatActivity {
     private Button profileBtn;
     private Button signOutBtn;
 
+    private Button chatListBtn;
+
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
@@ -31,6 +33,7 @@ public class HomePageUser extends AppCompatActivity {
 
         profileBtn = (Button) findViewById(R.id.profile_usr_home_btn);
         signOutBtn = (Button) findViewById(R.id.sign_out_btn);
+        chatListBtn = (Button) findViewById(R.id.chat);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
@@ -49,6 +52,13 @@ public class HomePageUser extends AppCompatActivity {
                     FirebaseAuth.getInstance().signOut();
                     startActivity(new Intent(HomePageUser.this, MainActivity.class));
                 }
+            }
+        });
+
+        chatListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePageUser.this, FriendsActivity.class));
             }
         });
     }
