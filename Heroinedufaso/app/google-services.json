@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "502213972978",
+    "firebase_url": "https://heroine-du-faso-default-rtdb.firebaseio.com",
     "project_id": "heroine-du-faso",
     "storage_bucket": "heroine-du-faso.appspot.com"
   },
@@ -27,6 +28,14 @@
           "android_info": {
             "package_name": "com.example.heroinedufaso",
             "certificate_hash": "887877f369a9581205ca2e62134d5864c7a3e080"
+          }
+        },
+        {
+          "client_id": "502213972978-p6j96puim1sd9l488dmb3i96rnfsrb5p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.heroinedufaso",
+            "certificate_hash": "ee3948e657ec3d39c5aceb4a933e469b1959c569"
           }
         },
         {
