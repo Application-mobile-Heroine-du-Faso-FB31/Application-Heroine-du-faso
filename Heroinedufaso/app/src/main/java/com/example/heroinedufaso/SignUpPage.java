@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -51,6 +52,7 @@ public class SignUpPage extends AppCompatActivity  implements
     protected void onStart() {
         super.onStart();
         FirebaseUser mAuthCurrentUser = mAuth.getCurrentUser();
+        CustomProgressDialog dialog = new CustomProgressDialog(SignUpPage.this);
 
         if(mAuthCurrentUser != null){
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -60,13 +62,21 @@ public class SignUpPage extends AppCompatActivity  implements
             ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    dialog.show();
                     User user = snapshot.getValue(User.class);
                     if(user != null){
                         if(user.getUid().equals(mAuthCurrentUser.getUid())){
                             startActivity(new Intent(SignUpPage.this, HomePageUser.class));
                             finish();
                         }
+
                     }
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            dialog.dismiss();
+                        }
+                    }, 1000);
 
                 }
 
