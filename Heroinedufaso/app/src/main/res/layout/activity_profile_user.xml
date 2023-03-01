@@ -14,12 +14,11 @@
         tools:context=".ProfileUserActivity">
 
 
-
-
         <Button
             android:id="@+id/back_btn_profile"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/pink_100"
             app:icon="@drawable/baseline_arrow_back_24" />
 
         <androidx.cardview.widget.CardView

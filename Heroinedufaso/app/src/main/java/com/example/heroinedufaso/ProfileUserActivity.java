@@ -64,65 +64,6 @@ public class ProfileUserActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-
-
-        firebaseCurrentUser = mAuth.getCurrentUser();
-        CustomProgressDialog dialog = new CustomProgressDialog(ProfileUserActivity.this);
-
-//         Read from the database
-        dialog.show();
-
-        if(firebaseCurrentUser != null){
-            databaseReference = FirebaseDatabase.getInstance().getReference("users").
-                    child(firebaseCurrentUser.getUid());
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-                    User user = dataSnapshot.getValue(User.class);
-
-                    currentUser.setPhoneNumber(user.getPhoneNumber());
-                    currentUser.setBirthday(user.getBirthday());
-                    currentUser.setCity(user.getCity());
-                    currentUser.setFullName(user.getFullName());
-                    currentUser.setRole(user.getRole());
-                    currentUser.setUid(firebaseCurrentUser.getUid());
-
-                    if(user.getPhotoProfileURL() != null){
-                        currentUser.setPhotoProfileURL(user.getPhotoProfileURL());
-//                        Glide.with(ProfileUserActivity.this).load(currentUser.getPhotoProfileURL()).error(R.drawable.baseline_person_24)
-//                                .placeholder(R.drawable.baseline_person_24).into(profilePicture);
-                    }
-
-                    phoneNumber.setText(currentUser.getPhoneNumber());
-                    fullName.setText(currentUser.getFullName());
-                    city.setText(currentUser.getCity());
-                    birthday.setText(currentUser.getBirthday());
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            dialog.dismiss();
-                        }
-                    }, 1000);
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    // Failed to read value
-                    Log.w(TAG, "Failed to read value.", error.toException());
-                }
-            });
-        }
-
-
-
-
     }
 
 
@@ -140,6 +81,7 @@ public class ProfileUserActivity extends AppCompatActivity {
         profilePicture = findViewById(R.id.profile_image_profile_activity);
         updateProfileInfoBtn = findViewById(R.id.update_profile_info_btn);
         backBtn = findViewById(R.id.back_btn_profile);
+        firebaseCurrentUser = mAuth.getCurrentUser();
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,7 +126,63 @@ public class ProfileUserActivity extends AppCompatActivity {
             }
         });
 
+        if (firebaseCurrentUser != null){
+            getData();
+        }
 
+
+    }
+
+    public void getData(){
+        CustomProgressDialog dialog = new CustomProgressDialog(ProfileUserActivity.this);
+
+//         Read from the database
+        dialog.show();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").
+                child(firebaseCurrentUser.getUid());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                User user = dataSnapshot.getValue(User.class);
+
+                currentUser.setPhoneNumber(user.getPhoneNumber());
+                currentUser.setBirthday(user.getBirthday());
+                currentUser.setCity(user.getCity());
+                currentUser.setFullName(user.getFullName());
+                currentUser.setRole(user.getRole());
+                currentUser.setUid(firebaseCurrentUser.getUid());
+
+                if(user.getPhotoProfileURL() != null){
+                    currentUser.setPhotoProfileURL(user.getPhotoProfileURL());
+                        Glide.with(ProfileUserActivity.this).load(currentUser.getPhotoProfileURL()).error(R.drawable.baseline_person_24)
+                                .placeholder(R.drawable.baseline_person_24).into(profilePicture);
+                }
+
+                phoneNumber.setText(currentUser.getPhoneNumber());
+                fullName.setText(currentUser.getFullName());
+                city.setText(currentUser.getCity());
+                birthday.setText(currentUser.getBirthday());
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialog.dismiss();
+                    }
+                }, 2000);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
 
     // this function is triggered when user
