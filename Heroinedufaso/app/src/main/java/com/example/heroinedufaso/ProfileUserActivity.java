@@ -108,7 +108,11 @@ public class ProfileUserActivity extends AppCompatActivity {
                     Toast.makeText(ProfileUserActivity.this, "Veuillez remplir toutes les sections, s'il vous plaît.", Toast.LENGTH_SHORT).show();
                 }
 
-                uploadImage();
+                if(selectedImageUri != null){
+                    uploadImage();
+                }
+
+
             }
         });
 
