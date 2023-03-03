@@ -237,12 +237,6 @@ public class ProfileUserActivity extends AppCompatActivity {
                         }
                         progressDialog.dismiss();
                     }
-                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                        double progres = 100 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount();
-                        progressDialog.setMessage("Téléchargement " + (int) progres + "%");
-                    }
                 });
 
     }
@@ -251,6 +245,8 @@ public class ProfileUserActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference("users/"
                 +FirebaseAuth.getInstance().getCurrentUser().getUid()+
                 "/photoProfileURL").setValue(url);
+
+        selectedImageUri = null;
     }
 
 

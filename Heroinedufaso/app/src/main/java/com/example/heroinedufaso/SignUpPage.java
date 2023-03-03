@@ -66,8 +66,16 @@ public class SignUpPage extends AppCompatActivity  implements
                     User user = snapshot.getValue(User.class);
                     if(user != null){
                         if(user.getUid().equals(mAuthCurrentUser.getUid())){
-                            startActivity(new Intent(SignUpPage.this, HomePageUser.class));
-                            finish();
+
+                            if(user.getRole().equals("user")){
+                                startActivity(new Intent(SignUpPage.this, HomePageUser.class));
+                                finish();
+                            } else if (user.getRole().equals("manager")) {
+                                startActivity(new Intent(SignUpPage.this, AdminHomePage.class));
+                                finish();
+                            }
+
+
                         }
 
                     }
@@ -145,7 +153,7 @@ public class SignUpPage extends AppCompatActivity  implements
                     myRef.setValue(user);
 
                     if(role.equals("manager")){
-                        startActivity(new Intent(SignUpPage.this, HomePageUser.class));
+                        startActivity(new Intent(SignUpPage.this, AdminHomePage.class));
                         finish();
                     }else if(role.equals("user")){
                         startActivity(new Intent(SignUpPage.this, HomePageUser.class));
