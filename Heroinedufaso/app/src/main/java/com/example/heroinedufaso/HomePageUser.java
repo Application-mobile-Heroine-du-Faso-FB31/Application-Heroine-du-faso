@@ -51,6 +51,7 @@ public class HomePageUser extends AppCompatActivity {
                 if(currentUser != null){
                     FirebaseAuth.getInstance().signOut();
                     startActivity(new Intent(HomePageUser.this, MainActivity.class));
+                    finish();
                 }
             }
         });

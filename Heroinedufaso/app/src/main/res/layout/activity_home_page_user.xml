@@ -1,127 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:visibility="visible"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="visible"
     tools:context=".HomePageUser">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:orientation="vertical"
+        android:padding="9dp">
         <!--    <ImageView-->
         <!--        android:id="@+id/imageView2"-->
         <!--        android:layout_width="match_parent"-->
         <!--        android:layout_height="222dp"-->
         <!--        app:srcCompat="@drawable/icone_compte_noir_page_utilisateur" />-->
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp"
-            android:foregroundGravity="center"
             android:gravity="center"
-            android:text="Menu utilisatrice"
-            android:textSize="34sp"
-            android:textStyle="bold">
+            android:orientation="horizontal">
 
-        </TextView>
+            <Button
+                android:id="@+id/profile_usr_home_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:backgroundTint="#E37B9E"
+                android:drawableLeft="@drawable/icone_chat_page_utilisateur"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FBFBFB"
+                app:icon="@drawable/baseline_person_24"
+                app:iconSize="90dp" />
 
-        <Button
-            android:id="@+id/profile_usr_home_btn"
+            <Button
+                android:id="@+id/chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:backgroundTint="#E37B9E"
+                android:drawableLeft="@drawable/icone_chat_page_utilisateur"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FBFBFB"
+                app:icon="@drawable/baseline_chat_24"
+                app:iconSize="90dp" />
+
+            <Button
+                android:id="@+id/forum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:backgroundTint="#E27B9D"
+                android:drawableLeft="@drawable/icone_forum_page_utlisateur"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:icon="@drawable/noun_forum_1871927"
+                app:iconSize="90dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:backgroundTint="#E37B9E"
-            android:drawableLeft="@drawable/icone_chat_page_utilisateur"
-            android:text="PROFIL"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#FBFBFB"
-            app:icon="@drawable/baseline_person_24" />
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/chat"
-            android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:backgroundTint="#E37B9E"
-            android:drawableLeft="@drawable/icone_chat_page_utilisateur"
-            android:text="CONVERSATION"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#FBFBFB"
-            app:icon="@drawable/baseline_chat_24" />
+            <Button
+                android:id="@+id/consultation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:backgroundTint="#E17B9C"
+                android:isScrollContainer="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:icon="@drawable/noun_consultation_3813168"
+                app:iconSize="90dp" />
 
-        <Button
-            android:id="@+id/forum"
-            android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:backgroundTint="#E27B9D"
-            android:drawableLeft="@drawable/icone_forum_page_utlisateur"
-            android:text="FORUM"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:icon="@drawable/baseline_forum_24" />
+            <Button
+                android:id="@+id/denoncer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:backgroundTint="#E07B9B"
+                android:drawableLeft="@drawable/icone_denoncer_page_utlisateur"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:icon="@drawable/baseline_thumb_down_24"
+                app:iconSize="90dp" />
 
-        <Button
-            android:id="@+id/consultation"
-            android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:backgroundTint="#E17B9C"
-            android:isScrollContainer="false"
-            android:text="CONSULTATION"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:icon="@drawable/stethoscope_white_icon"
-            app:iconSize="60px" />
+            <Button
+                android:id="@+id/menstruel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:backgroundTint="#DF7B9A"
+                android:drawableLeft="@drawable/icone_menstruel_page_utlisatrice"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:icon="@drawable/noun_calendar_4331175"
+                app:iconSize="90dp" />
 
-        <Button
-            android:id="@+id/denoncer"
-            android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:backgroundTint="#E07B9B"
-            android:drawableLeft="@drawable/icone_denoncer_page_utlisateur"
-            android:text="DENONCER"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:icon="@drawable/baseline_thumb_down_24" />
 
-        <Button
-            android:id="@+id/menstruel"
-            android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:backgroundTint="#DF7B9A"
-            android:drawableLeft="@drawable/icone_menstruel_page_utlisatrice"
-            android:text="CYCLE MENSTRUEL"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/Carte"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:backgroundTint="#DE7B99"
-            android:drawableLeft="@drawable/icone_carte_page_utlisateur"
-            android:text="CARTE"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:icon="@drawable/baseline_location_on_24" />
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/notification"
-            android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:backgroundTint="#E07B9B"
-            android:drawableLeft="@drawable/icone_notification_page_utilisateur"
-            android:text="NOTIFICATION"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:icon="@drawable/baseline_notifications_active_24" />
+
+            <Button
+                android:id="@+id/Carte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:backgroundTint="#DE7B99"
+                android:drawableLeft="@drawable/icone_carte_page_utlisateur"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:icon="@drawable/baseline_location_on_24"
+                app:iconSize="90dp" />
+
+            <Button
+                android:id="@+id/quiz_home_user_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:backgroundTint="#DE7B99"
+                android:drawableLeft="@drawable/icone_carte_page_utlisateur"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:icon="@drawable/baseline_quiz_24"
+                app:iconSize="90dp" />
+
+            <Button
+                android:id="@+id/notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:backgroundTint="#E07B9B"
+                android:drawableLeft="@drawable/icone_notification_page_utilisateur"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:icon="@drawable/baseline_notifications_active_24"
+                app:iconSize="90dp" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/sign_out_btn"
-            android:layout_width="match_parent"
-            android:layout_height="63dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:backgroundTint="#E37B9E"
             android:drawableLeft="@drawable/icone_chat_page_utilisateur"
-            android:text="DECONNEXION"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FBFBFB"
-            app:icon="@drawable/baseline_logout_24" />
-
+            app:icon="@drawable/baseline_logout_24"
+            app:iconSize="90dp" />
 
 
     </LinearLayout>
-
 
 
 </ScrollView>
