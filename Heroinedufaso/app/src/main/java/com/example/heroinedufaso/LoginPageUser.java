@@ -14,13 +14,17 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,6 +44,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class LoginPageUser extends AppCompatActivity {
@@ -51,6 +56,7 @@ public class LoginPageUser extends AppCompatActivity {
     // field for phone and OTP.
 
     private EditText edtPhone, edtOTP;
+    private TextView  header, message;
 
     // buttons for generating OTP and verifying OTP
 
@@ -61,6 +67,14 @@ public class LoginPageUser extends AppCompatActivity {
     // string for storing our verification ID
 
     private String verificationId;
+
+    private final String COUNTRY_CODE = "+1";
+
+    private String headerVerification, headerLogin, messageVerification, messageLogin;
+
+    private TextView resendCode;
+
+    private TextToSpeech textToSpeech;
 
     @Override
     protected void onStart() {
@@ -84,6 +98,30 @@ public class LoginPageUser extends AppCompatActivity {
         verifyOTPBtn = findViewById(R.id.idBtnVerify);
 
         generateOTPBtn = findViewById(R.id.idBtnGetOtp);
+
+        header = findViewById(R.id.header_txt_view_login_user);
+
+        message = findViewById(R.id.message_txt_view_login_user);
+
+        resendCode = findViewById(R.id.rend_send_verification_code_txt_view);
+
+        headerLogin = "Connexion";
+        headerVerification = "Vérification";
+        messageLogin = "S'il vous plaît, veuillez entrez votre numéro de téléphone " +
+                "pour recevoir un code de vérification. ";
+
+        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                if(i != TextToSpeech.ERROR) {
+                    textToSpeech.setLanguage(Locale.FRENCH);
+                }
+            }
+        });
+
+
+
+
 
 
         // setting onclick listener for generate OTP button.
@@ -111,9 +149,25 @@ public class LoginPageUser extends AppCompatActivity {
 
                     // send OTP method for getting OTP from Firebase.
 
-                    String phone = "+1" + edtPhone.getText().toString();
+                    String phone = COUNTRY_CODE + edtPhone.getText().toString();
 
                     sendVerificationCode(phone);
+
+                    messageVerification = "S'il vous plaît, veuillez entrer " +
+                            "le code de vérification envoyé au numéro " + phone;
+
+                    header.setText(headerVerification);
+                    message.setText(messageVerification);
+
+                    edtPhone.setVisibility(View.INVISIBLE);
+                    generateOTPBtn.setVisibility(View.INVISIBLE);
+
+                    edtOTP.setVisibility(View.VISIBLE);
+                    verifyOTPBtn.setVisibility(View.VISIBLE);
+                    resendCode.setPaintFlags(resendCode.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                    resendCode.setVisibility(View.VISIBLE);
+
+                    textToSpeech.speak(messageVerification, TextToSpeech.QUEUE_FLUSH, null);
 
                 }
 
@@ -153,6 +207,14 @@ public class LoginPageUser extends AppCompatActivity {
 
             }
 
+        });
+
+        resendCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String phone = COUNTRY_CODE + edtPhone.getText().toString();
+                sendVerificationCode(phone);
+            }
         });
 
 

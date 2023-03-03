@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
 
@@ -15,98 +15,135 @@
 
     <!--Edittext for getting users phone number-->
 
+
+    <!--Button for getting OTP-->
+
+
+    <!--Edittext for getting otp from user-->
+
+
+    <!--button for verifying user OTP-->
+
     <EditText
 
         android:id="@+id/idEdtPhoneNumber"
 
-        android:layout_width="match_parent"
+        android:layout_width="251dp"
 
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
 
         android:layout_centerHorizontal="true"
 
-        android:layout_marginStart="10dp"
-
-        android:layout_marginTop="10dp"
-
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:hint="Entrez votre numero de telephone"
         android:importantForAutofill="no"
-        android:inputType="phone" />
-
-
-    <!--Button for getting OTP-->
+        android:inputType="phone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/idBtnGetOtp"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.349" />
 
     <Button
 
         android:id="@+id/idBtnGetOtp"
 
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
 
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
 
         android:layout_below="@id/idEdtPhoneNumber"
 
 
-        android:layout_marginStart="10dp"
+        android:layout_marginEnd="36dp"
 
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
         android:drawableLeft="@drawable/baseline_send_24"
-        android:text="Envoie du code de verification"
-
         android:textAllCaps="false"
-        app:icon="@drawable/baseline_send_24"
-        app:iconGravity="start" />
-
-
-
-    <!--Edittext for getting otp from user-->
+        app:icon="@drawable/baseline_arrow_forward_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.349" />
 
     <EditText
 
         android:id="@+id/idEdtOtp"
 
-        android:layout_width="match_parent"
+        android:layout_width="251dp"
 
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
 
         android:layout_below="@id/idBtnGetOtp"
 
-        android:layout_marginStart="10dp"
-
-        android:layout_marginTop="10dp"
-
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:hint="Code de vérification"
+        android:layout_marginEnd="20dp"
+        android:hint="XXXXXX"
         android:importantForAutofill="no"
-        android:inputType="phone" />
-
-
-    <!--button for verifying user OTP-->
+        android:inputType="phone"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/idBtnVerify"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.349" />
 
     <Button
 
         android:id="@+id/idBtnVerify"
 
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
 
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
 
         android:layout_below="@id/idEdtOtp"
 
-        android:layout_marginStart="10dp"
-
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Connexion"
+        android:layout_marginEnd="36dp"
         android:textAllCaps="false"
-        app:icon="@drawable/baseline_login_24"
-        app:iconGravity="start" />
+        android:visibility="invisible"
+        app:icon="@drawable/baseline_check_circle_outline_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.349" />
+
+    <TextView
+        android:id="@+id/header_txt_view_login_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connexion"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.173" />
+
+    <TextView
+        android:id="@+id/message_txt_view_login_user"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="S'il vous plaît, veuillez entrez votre numéro de téléphone pour recevoir un code de vérification. "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.248" />
+
+    <TextView
+        android:id="@+id/rend_send_verification_code_txt_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Renvoyez le code de vérification"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.443" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
