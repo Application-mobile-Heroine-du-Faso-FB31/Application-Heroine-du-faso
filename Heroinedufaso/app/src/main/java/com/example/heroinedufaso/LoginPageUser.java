@@ -203,6 +203,13 @@ public class LoginPageUser extends AppCompatActivity {
 
                     verifyCode(edtOTP.getText().toString());
 
+//                    String messageLogin = "Afin de pouvoir compléter votre inscription s'il vous plaît " +
+//                            "veuillez fournir votre nom complet, " +
+//                            "ville de résidence et date de naissance. Si vous n'est pas capable de l'écrire, " +
+//                            "veuillez fournir ses informations vocalement à l'aide du buton vocale. ";
+//
+//                    textToSpeech.speak(messageLogin, TextToSpeech.QUEUE_FLUSH, null);
+
                 }
 
             }

@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:visibility="visible"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="3dp"
+    android:visibility="visible"
     tools:context=".SignUpPage">
 
-    <ImageView
-        android:id="@+id/imageView3"
+    <!--    <ImageView-->
+    <!--        android:id="@+id/profileImageSignupPage"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="200dp"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginTop="30dp"-->
+    <!--        android:layout_marginBottom="30dp"-->
+    <!--        android:background="@drawable/roundimage"-->
+    <!--        app:srcCompat="@drawable/baseline_person_pink_24" />-->
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="203dp"
-        tools:srcCompat="@drawable/icone_compte_noir_page_utilisateur" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        android:text="Information sur le compte"
+        android:textSize="24sp"
+        android:textStyle="bold"></TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="25dp"
+        android:text="Afin de pouvoir compléter votre inscription s'il vous plaît veuillez fournir votre nom complet, ville et date. Si vous n'est pas capable de l'écrire, veuillez fournir ses informations vocalement à l'aide du buton vocale. "
+        android:textSize="14sp"></TextView>
 
     <!--
     <EditText
@@ -24,41 +53,45 @@
     <EditText
         android:id="@+id/Nom_page_creation"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/input"
         android:drawableLeft="@drawable/icone_connexion_page_creation_de_compte"
         android:ems="10"
         android:hint="Nom complet"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:padding="10dp" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/Numero_telephone_page_creation"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="67dp"-->
-<!--        android:drawableLeft="@drawable/icone_numero_creation_de_compte"-->
-<!--        android:ems="10"-->
-<!--        android:hint="Numéro de téléphone"-->
-<!--        android:inputType="phone" />-->
+    <!--    <EditText-->
+    <!--        android:id="@+id/Numero_telephone_page_creation"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="67dp"-->
+    <!--        android:drawableLeft="@drawable/icone_numero_creation_de_compte"-->
+    <!--        android:ems="10"-->
+    <!--        android:hint="Numéro de téléphone"-->
+    <!--        android:inputType="phone" />-->
 
-<!--    <EditText-->
-<!--        android:id="@+id/Date_de_naissance_page_creation"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="64dp"-->
-<!--        android:drawableLeft="@drawable/icone_naissance_page_creation_de_compte"-->
-<!--        android:ems="10"-->
-<!--        android:hint="Date de naissance"-->
-<!--        android:inputType="date" />-->
-
-
+    <!--    <EditText-->
+    <!--        android:id="@+id/Date_de_naissance_page_creation"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="64dp"-->
+    <!--        android:drawableLeft="@drawable/icone_naissance_page_creation_de_compte"-->
+    <!--        android:ems="10"-->
+    <!--        android:hint="Date de naissance"-->
+    <!--        android:inputType="date" />-->
 
 
     <EditText
         android:id="@+id/ville_page_creation"
         android:layout_width="match_parent"
-        android:layout_height="74dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/input"
         android:drawableLeft="@drawable/icone_adresse_creation_de_compte"
         android:ems="10"
         android:hint="Ville"
-        android:inputType="textPostalAddress" />
+        android:inputType="textPostalAddress"
+        android:padding="10dp" />
 
     <Button
         android:id="@+id/birthday_input_page_creation"
@@ -66,22 +99,32 @@
         android:layout_height="67dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Date de naissance"
-        app:icon="@drawable/baseline_calendar_24" />
+        android:layout_margin="5dp"
+        android:background="@drawable/button_background"
+        android:padding="10dp"
+        app:icon="@drawable/noun_birthday_2"
+        app:iconGravity="top"
+        app:iconSize="45dp" />
 
     <Button
         android:id="@+id/Vocal_btn_page_creation"
         android:layout_width="match_parent"
         android:layout_height="67dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_background"
         android:backgroundTint="#E37B9E"
-        android:text="Enregistrement vocal"
-        app:icon="@drawable/baseline_keyboard_voice_24" />
+        android:padding="10dp"
+        app:icon="@drawable/baseline_keyboard_voice_24"
+        app:iconGravity="top" />
 
     <Button
         android:id="@+id/Valider_btn_page_creation"
         android:layout_width="match_parent"
         android:layout_height="69dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_background"
         android:backgroundTint="#E37B9E"
-        android:text="Création du compte"
-        app:icon="@drawable/baseline_app_registration_24" />
+        android:padding="10dp"
+        app:icon="@drawable/baseline_check_circle_outline_24"
+        app:iconGravity="top" />
 </LinearLayout>

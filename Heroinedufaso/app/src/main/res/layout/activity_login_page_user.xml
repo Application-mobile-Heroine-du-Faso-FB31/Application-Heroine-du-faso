@@ -34,8 +34,10 @@
 
         android:layout_centerHorizontal="true"
 
+        android:background="@drawable/input"
         android:importantForAutofill="no"
         android:inputType="phone"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/idBtnGetOtp"
         app:layout_constraintHorizontal_bias="0.666"
@@ -62,7 +64,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.349" />
+        app:layout_constraintVertical_bias="0.349"
+        android:background="@drawable/button_background"/>
 
     <EditText
 
@@ -75,9 +78,11 @@
         android:layout_below="@id/idBtnGetOtp"
 
         android:layout_marginEnd="20dp"
+        android:background="@drawable/input"
         android:hint="XXXXXX"
         android:importantForAutofill="no"
         android:inputType="phone"
+        android:textAlignment="center"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/idBtnVerify"
@@ -103,7 +108,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.349" />
+        app:layout_constraintVertical_bias="0.349"
+        android:background="@drawable/button_background"/>
 
     <TextView
         android:id="@+id/header_txt_view_login_user"

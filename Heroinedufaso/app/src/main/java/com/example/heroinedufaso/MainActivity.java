@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser firebaseCurrentUser = mAuth.getCurrentUser();
     private TextToSpeech textToSpeech;
 
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         adminBtn = (Button) findViewById(R.id.admin_btn_home_page);
         healthSpecialistBtn = (Button) findViewById(R.id.sp_health_btn_home_page);
         userBtn = (Button) findViewById(R.id.user_btn_home_page);
+
+
         textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {

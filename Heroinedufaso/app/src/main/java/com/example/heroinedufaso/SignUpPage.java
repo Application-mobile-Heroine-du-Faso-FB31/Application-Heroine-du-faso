@@ -17,6 +17,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +35,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class SignUpPage extends AppCompatActivity  implements
         DatePickerDialog.OnDateSetListener {
@@ -46,56 +48,13 @@ public class SignUpPage extends AppCompatActivity  implements
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
+    private TextToSpeech textToSpeech;
+
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser mAuthCurrentUser = mAuth.getCurrentUser();
-        CustomProgressDialog dialog = new CustomProgressDialog(SignUpPage.this);
-
-        if(mAuthCurrentUser != null){
-            final FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference ref = database.getReference("users").
-                    child(mAuthCurrentUser.getUid());
-
-            ref.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    dialog.show();
-                    User user = snapshot.getValue(User.class);
-                    if(user != null){
-                        if(user.getUid().equals(mAuthCurrentUser.getUid())){
-
-                            if(user.getRole().equals("user")){
-                                startActivity(new Intent(SignUpPage.this, HomePageUser.class));
-                                finish();
-                            } else if (user.getRole().equals("manager")) {
-                                startActivity(new Intent(SignUpPage.this, AdminHomePage.class));
-                                finish();
-                            }
-
-
-                        }
-
-                    }
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            dialog.dismiss();
-                        }
-                    }, 1000);
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                    Log.i(TAG,"The read failed: " + error.getCode());
-                }
-            });
-        }
-
     }
 
 
@@ -105,11 +64,15 @@ public class SignUpPage extends AppCompatActivity  implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_page);
 
+
         fullName = findViewById(R.id.Nom_page_creation);
         city = findViewById(R.id.ville_page_creation);
         birthday = findViewById(R.id.birthday_input_page_creation);
         voice = findViewById(R.id.Vocal_btn_page_creation);
         validate = findViewById(R.id.Valider_btn_page_creation);
+
+
+
 
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
@@ -119,6 +82,15 @@ public class SignUpPage extends AppCompatActivity  implements
         }
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
+//        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+//            @Override
+//            public void onInit(int i) {
+//                if(i != TextToSpeech.ERROR) {
+//                    textToSpeech.setLanguage(Locale.FRENCH);
+//                }
+//            }
+//        });
 
 
         birthday.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +145,124 @@ public class SignUpPage extends AppCompatActivity  implements
         });
 
 
+//        getVoiceInstruction();
 
+        checkData();
+
+//        if(!hasData){
+//            textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+//                @Override
+//                public void onInit(int status) {
+//                    if (status != TextToSpeech.ERROR) {
+//                        // replace this Locale with whatever you want
+//                        String messageLogin = "Afin de pouvoir compléter votre inscription s'il vous plaît " +
+//                                "veuillez fournir votre nom complet, " +
+//                                "ville de résidence et date de naissance. Si vous n'est pas capable de l'écrire, " +
+//                                "veuillez fournir ses informations vocalement à l'aide du buton vocale. ";
+//
+//                        textToSpeech.speak(messageLogin, TextToSpeech.QUEUE_FLUSH, null);
+//
+//                    }
+//                }
+//            });
+//        }
+
+
+
+
+
+
+    }
+
+//    private void getVoiceInstruction() {
+//        String messageLogin = "Afin de pouvoir compléter votre inscription s'il vous plaît " +
+//                "veuillez fournir votre nom complet, " +
+//                "ville et date. Si vous n'est pas capable de l'écrire, " +
+//                "veuillez fournir ses informations vocalement à l'aide du buton vocale. ";
+//
+//        textToSpeech.speak(messageLogin, TextToSpeech.QUEUE_FLUSH, null);
+//    }
+
+    private boolean checkData() {
+        FirebaseUser mAuthCurrentUser = mAuth.getCurrentUser();
+        boolean [] hasData = {false};
+        CustomProgressDialog dialog = new CustomProgressDialog(SignUpPage.this);
+
+        if(mAuthCurrentUser != null){
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("users").
+                    child(mAuthCurrentUser.getUid());
+
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    User user = snapshot.getValue(User.class);
+                    if(user != null){
+                        dialog.show();
+                        if(user.getUid().equals(mAuthCurrentUser.getUid())){
+                            hasData[0] = true;
+                            if(user.getRole().equals("user")){
+                                startActivity(new Intent(SignUpPage.this, HomePageUser.class));
+                                finish();
+                            } else if (user.getRole().equals("manager")) {
+                                startActivity(new Intent(SignUpPage.this, AdminHomePage.class));
+                                finish();
+                            }
+
+                            return;
+
+                        }
+
+                    }else{
+//                        new Handler().postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                dialog.dismiss();
+//                            }
+//                        }, 2000);
+
+                        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+                            @Override
+                            public void onInit(int status) {
+                                if (status != TextToSpeech.ERROR) {
+                                    // replace this Locale with whatever you want
+                                    String messageLogin = "Afin de pouvoir compléter votre inscription s'il vous plaît " +
+                                            "veuillez fournir votre nom complet, " +
+                                            "ville de résidence et date de naissance. Si vous n'est pas capable de l'écrire, " +
+                                            "veuillez fournir ses informations vocalement à l'aide du bouton vocale. ";
+
+                                    textToSpeech.setLanguage(Locale.FRENCH);
+
+                                    textToSpeech.speak(messageLogin, TextToSpeech.QUEUE_FLUSH, null);
+
+                                }
+                            }
+                        });
+
+                        return;
+                    }
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            dialog.dismiss();
+//                        }
+//                    }, 2000);
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                    Log.i(TAG,"The read failed: " + error.getCode());
+                }
+            });
+
+
+
+        }
+
+        return hasData[0];
     }
 
     public void showDatePickerDialog(){
