@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -26,8 +28,10 @@ public class FriendsActivity extends AppCompatActivity {
     private ArrayList<User> users;
     private ProgressBar progressBar;
     private UsersAdapter usersAdapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
     UsersAdapter.OnUserClickListener onUserClickListener;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,15 @@ public class FriendsActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         users = new ArrayList<>();
         recyclerView = findViewById(R.id.recycler);
+        swipeRefreshLayout = findViewById(R.id.swiper_friends_activity);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getUsers();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         onUserClickListener = new UsersAdapter.OnUserClickListener() {
             @Override
@@ -55,6 +68,7 @@ public class FriendsActivity extends AppCompatActivity {
 //    }
 
     private void getUsers(){
+        users.clear();
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
