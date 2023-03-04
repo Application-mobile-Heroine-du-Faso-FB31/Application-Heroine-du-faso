@@ -10,35 +10,41 @@
         android:id="@+id/email_input_admin_login_page"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/input"
         android:ems="10"
         android:hint="Adresse couriel"
         android:inputType="textPersonName"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.43" />
+        app:layout_constraintVertical_bias="0.614" />
 
     <EditText
         android:id="@+id/password_input_admin_login_page"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/input"
         android:ems="10"
         android:hint="Mot de passe"
         android:inputType="textPassword"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.526" />
+        app:layout_constraintVertical_bias="0.707" />
 
     <Button
         android:id="@+id/login_btn_admin_login_page"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/input"
         android:backgroundTint="#E37B9E"
+        android:padding="10dp"
         android:text="Connexion"
         app:icon="@drawable/baseline_login_24"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,17 +52,17 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.639" />
+        app:layout_constraintVertical_bias="0.821" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="333dp"
-        android:layout_height="244dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.576"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.063"
-        app:srcCompat="@drawable/icone_heroine_du_faso" />
+        app:layout_constraintVertical_bias="0.075"
+        app:srcCompat="@drawable/heroinedufasologo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

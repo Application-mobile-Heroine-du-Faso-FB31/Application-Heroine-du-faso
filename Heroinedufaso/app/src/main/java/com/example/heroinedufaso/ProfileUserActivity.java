@@ -68,6 +68,8 @@ public class ProfileUserActivity extends AppCompatActivity {
 
 
 
+
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,7 @@ public class ProfileUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ProfileUserActivity.this, HomePageUser.class));
+                finish();
             }
         });
 
@@ -138,10 +141,9 @@ public class ProfileUserActivity extends AppCompatActivity {
     }
 
     public void getData(){
-        CustomProgressDialog dialog = new CustomProgressDialog(ProfileUserActivity.this);
-
-//         Read from the database
-        dialog.show();
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Chargement ...");
+        progressDialog.show();
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users").
                 child(firebaseCurrentUser.getUid());
@@ -163,7 +165,7 @@ public class ProfileUserActivity extends AppCompatActivity {
 
                 if(user.getPhotoProfileURL() != null){
                     currentUser.setPhotoProfileURL(user.getPhotoProfileURL());
-                        Glide.with(ProfileUserActivity.this).load(currentUser.getPhotoProfileURL()).error(R.drawable.baseline_person_24)
+                        Glide.with(getApplicationContext()).load(currentUser.getPhotoProfileURL()).error(R.drawable.baseline_person_24)
                                 .placeholder(R.drawable.baseline_person_24).into(profilePicture);
                 }
 
@@ -172,12 +174,7 @@ public class ProfileUserActivity extends AppCompatActivity {
                 city.setText(currentUser.getCity());
                 birthday.setText(currentUser.getBirthday());
 
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        dialog.dismiss();
-                    }
-                }, 2000);
+                progressDialog.dismiss();
 
             }
 
@@ -186,6 +183,8 @@ public class ProfileUserActivity extends AppCompatActivity {
                 // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
+
+
         });
     }
 

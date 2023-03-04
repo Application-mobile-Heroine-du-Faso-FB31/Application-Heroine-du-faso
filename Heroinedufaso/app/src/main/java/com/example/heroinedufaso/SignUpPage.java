@@ -13,7 +13,9 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +26,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,6 +53,8 @@ public class SignUpPage extends AppCompatActivity  implements
 
     private TextToSpeech textToSpeech;
 
+    private TextView birthdayOutput;
+
 
 
     @Override
@@ -59,6 +64,7 @@ public class SignUpPage extends AppCompatActivity  implements
 
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +76,7 @@ public class SignUpPage extends AppCompatActivity  implements
         birthday = findViewById(R.id.birthday_input_page_creation);
         voice = findViewById(R.id.Vocal_btn_page_creation);
         validate = findViewById(R.id.Valider_btn_page_creation);
+        birthdayOutput = findViewById(R.id.birtdayTxtViewSignUP);
 
 
 
@@ -146,7 +153,6 @@ public class SignUpPage extends AppCompatActivity  implements
 
 
 //        getVoiceInstruction();
-
         checkData();
 
 //        if(!hasData){
@@ -186,7 +192,10 @@ public class SignUpPage extends AppCompatActivity  implements
     private boolean checkData() {
         FirebaseUser mAuthCurrentUser = mAuth.getCurrentUser();
         boolean [] hasData = {false};
-        CustomProgressDialog dialog = new CustomProgressDialog(SignUpPage.this);
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Chargement ...");
+        progressDialog.show();
+
 
         if(mAuthCurrentUser != null){
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -199,16 +208,21 @@ public class SignUpPage extends AppCompatActivity  implements
 
                     User user = snapshot.getValue(User.class);
                     if(user != null){
-                        dialog.show();
+
                         if(user.getUid().equals(mAuthCurrentUser.getUid())){
                             hasData[0] = true;
+
                             if(user.getRole().equals("user")){
+                                progressDialog.dismiss();
                                 startActivity(new Intent(SignUpPage.this, HomePageUser.class));
                                 finish();
                             } else if (user.getRole().equals("manager")) {
+                                progressDialog.dismiss();
                                 startActivity(new Intent(SignUpPage.this, AdminHomePage.class));
                                 finish();
                             }
+
+
 
                             return;
 
@@ -221,7 +235,7 @@ public class SignUpPage extends AppCompatActivity  implements
 //                                dialog.dismiss();
 //                            }
 //                        }, 2000);
-
+                        progressDialog.dismiss();
                         textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
                             @Override
                             public void onInit(int status) {
@@ -278,6 +292,7 @@ public class SignUpPage extends AppCompatActivity  implements
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         birthdayInput  = dayOfMonth + "/" + month + "/" + year;
         birthday.setText(birthdayInput);
+        birthdayOutput.setText("Date de naissance " + birthdayInput);
     }
 
 }

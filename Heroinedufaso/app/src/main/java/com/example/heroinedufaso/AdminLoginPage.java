@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class AdminLoginPage extends AppCompatActivity {
 
@@ -60,10 +62,35 @@ public class AdminLoginPage extends AppCompatActivity {
             public void onClick(View view) {
                 String email = emailInput.getText().toString().trim();
                 String password = passwordInput.getText().toString().trim();
-                login(email, password);
+                if(TextUtils.isEmpty(email)){
+                    Toast.makeText(AdminLoginPage.this, "Veuillez entrer votre adresse email.",
+                            Toast.LENGTH_SHORT).show();
+                }else if(TextUtils.isEmpty(password)){
+                    Toast.makeText(AdminLoginPage.this, "Veuillez entrer votre mot de passe.",
+                            Toast.LENGTH_SHORT).show();
+                } else if(!isValidEmail(email)){
+                    Toast.makeText(AdminLoginPage.this, "Adresse email invalid.",
+                            Toast.LENGTH_SHORT).show();
+                }else{
+                    login(email, password);
+                }
+
             }
         });
 
+    }
+
+    private static boolean isValidEmail(String email)
+    {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
     }
 
     public void login(String email, String password){
