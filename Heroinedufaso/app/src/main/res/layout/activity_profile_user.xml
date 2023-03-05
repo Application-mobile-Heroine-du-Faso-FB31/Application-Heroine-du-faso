@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:background="@color/pink_100">
 
-
             <Button
                 android:id="@+id/back_btn_profile"
                 android:layout_width="wrap_content"
@@ -42,13 +41,24 @@
             android:gravity="center">
 
 
-            <ImageButton
-                android:id="@+id/profile_image_profile_activity"
+            <androidx.cardview.widget.CardView
                 android:layout_width="250dp"
                 android:layout_height="250dp"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/baseline_person_24" />
+                app:cardCornerRadius="500dp"
+                android:layout_gravity="center">
+
+
+                <ImageButton
+                    android:id="@+id/profile_image_profile_activity"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/baseline_person_24"
+                    />
+            </androidx.cardview.widget.CardView>
+
+
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>

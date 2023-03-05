@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -54,7 +55,8 @@ public class FriendsActivity extends AppCompatActivity {
         onUserClickListener = new UsersAdapter.OnUserClickListener() {
             @Override
             public void OnUserClicked(int position) {
-
+                startActivity(new Intent(FriendsActivity.this, MessageActivity.class));
+//                Toast.makeText(FriendsActivity.this, "Tapped on user " + users.get(position).getFullName() , Toast.LENGTH_SHORT).show();
             }
         };
 
