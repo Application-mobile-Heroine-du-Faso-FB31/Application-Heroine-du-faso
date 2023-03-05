@@ -121,7 +121,7 @@
                 android:backgroundTint="#DE7B99"
                 android:drawableLeft="@drawable/icone_carte_page_utlisateur"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:icon="@drawable/baseline_location_on_24"
+                app:icon="@drawable/noun_hospital_map_3681219"
                 app:iconSize="90dp" />
 
             <Button
@@ -132,7 +132,7 @@
                 android:backgroundTint="#DE7B99"
                 android:drawableLeft="@drawable/icone_carte_page_utlisateur"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:icon="@drawable/baseline_quiz_24"
+                app:icon="@drawable/quiz"
                 app:iconSize="90dp" />
 
             <Button
