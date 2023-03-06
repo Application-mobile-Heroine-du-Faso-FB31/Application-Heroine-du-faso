@@ -51,6 +51,10 @@
         android:layout_width="match_parent"
         android:visibility="gone"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/edtText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -58,7 +62,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/pinkbg"
+        android:background="@drawable/input"
         android:maxHeight="100dp"
         android:minHeight="45dp"
         android:paddingHorizontal="20dp"
@@ -72,7 +76,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imgSendMessage"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"

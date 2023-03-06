@@ -32,6 +32,8 @@ public class FriendsActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
     UsersAdapter.OnUserClickListener onUserClickListener;
 
+    private String myImageUrl;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,12 @@ public class FriendsActivity extends AppCompatActivity {
         onUserClickListener = new UsersAdapter.OnUserClickListener() {
             @Override
             public void OnUserClicked(int position) {
-                startActivity(new Intent(FriendsActivity.this, MessageActivity.class));
+                startActivity(new Intent(FriendsActivity.this, MessageActivity.class).
+                        putExtra("username_of_roomate", users.get(position).getFullName())
+                        .putExtra("phone_number_of_roomate", users.get(position).getPhoneNumber())
+                        .putExtra("img_of_roomate", users.get(position).getPhotoProfileURL())
+                        .putExtra("my_img", myImageUrl)
+                        .putExtra("user_id", users.get(position).getUid()));
 //                Toast.makeText(FriendsActivity.this, "Tapped on user " + users.get(position).getFullName() , Toast.LENGTH_SHORT).show();
             }
         };
@@ -80,6 +87,8 @@ public class FriendsActivity extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     if(!currentUser.getUid().equals(dataSnapshot.getValue(User.class).getUid())){
                         users.add(dataSnapshot.getValue(User.class));
+                    }else{
+                        myImageUrl = dataSnapshot.getValue(User.class).getPhotoProfileURL();
                     }
                 }
                 usersAdapter = new UsersAdapter(users, FriendsActivity.this, onUserClickListener);
