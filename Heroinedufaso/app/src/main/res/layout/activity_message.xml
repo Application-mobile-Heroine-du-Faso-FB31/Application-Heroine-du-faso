@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MessageActivity">
-    
+
     <LinearLayout
         android:id="@+id/linearlayout"
         android:layout_width="match_parent"
@@ -13,11 +13,12 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@color/pink_100"
         android:orientation="horizontal">
-        
+
         <androidx.cardview.widget.CardView
             android:layout_width="55dp"
             android:layout_height="55dp"
             app:cardCornerRadius="44dp"
+            android:layout_marginLeft="25dp"
             android:layout_gravity="center">
 
             <ImageView
@@ -32,9 +33,10 @@
             android:id="@+id/txtChatingWith"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="15dp"
-            android:layout_gravity="center"/>
-        
+            android:textColor="@color/white" />
+
     </LinearLayout>
 
     <ProgressBar
@@ -52,14 +54,12 @@
         android:visibility="gone"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/edtText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearlayout"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/edtText"
-        android:layout_width="0dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@drawable/input"
@@ -68,7 +68,8 @@
         android:paddingHorizontal="20dp"
         android:paddingVertical="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+
+        app:layout_constraintEnd_toStartOf="@+id/imgSendMessage"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

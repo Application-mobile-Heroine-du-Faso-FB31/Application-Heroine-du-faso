@@ -59,7 +59,7 @@ public class FriendsActivity extends AppCompatActivity {
             public void OnUserClicked(int position) {
                 startActivity(new Intent(FriendsActivity.this, MessageActivity.class).
                         putExtra("username_of_roomate", users.get(position).getFullName())
-                        .putExtra("phone_number_of_roomate", users.get(position).getPhoneNumber())
+                        .putExtra("id_receive", users.get(position).getUid())
                         .putExtra("img_of_roomate", users.get(position).getPhotoProfileURL())
                         .putExtra("my_img", myImageUrl)
                         .putExtra("user_id", users.get(position).getUid()));
