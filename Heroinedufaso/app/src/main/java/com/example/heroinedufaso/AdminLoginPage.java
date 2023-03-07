@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,8 +36,11 @@ public class AdminLoginPage extends AppCompatActivity {
     private EditText emailInput;
     private EditText passwordInput;
     private Button loginBtn;
+    private TextView linkSignup;
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+    private boolean enableLink = false;
 
     @Override
     protected void onStart() {
@@ -43,6 +48,7 @@ public class AdminLoginPage extends AppCompatActivity {
     }
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +57,28 @@ public class AdminLoginPage extends AppCompatActivity {
         emailInput = (EditText) findViewById(R.id.email_input_admin_login_page);
         passwordInput = (EditText) findViewById(R.id.password_input_admin_login_page);
         loginBtn = (Button) findViewById(R.id.login_btn_admin_login_page);
+        linkSignup = findViewById(R.id.signup_link_adm_login_activity);
 
 
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
 
+        if(b!=null){
+            if(b.getString("selected_role").equals("health_specialist")){
+                enableLink = true;
+            }
+        }
+
+        if(enableLink){
+            linkSignup.setVisibility(View.VISIBLE);
+        }
+
+        linkSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminLoginPage.this, SignupHealthSpecilist.class));
+            }
+        });
 
 
 
