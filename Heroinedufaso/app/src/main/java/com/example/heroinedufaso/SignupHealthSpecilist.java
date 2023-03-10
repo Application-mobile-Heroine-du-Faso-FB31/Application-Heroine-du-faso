@@ -104,8 +104,15 @@ public class SignupHealthSpecilist extends AppCompatActivity {
 
                                     String birthday = dayOfMonthBirthDayStr + "/" + monthBirthdayStr + "/" + yearBirthdayStr;
 
-                                    HealthSpecialist healthSpecialist = new HealthSpecialist(birthday, cityStr, emailStr, fullNameStr,
-                                            phoneNumberStr, "health_specialist", specialityStr);
+                                    HealthSpecialist healthSpecialist = new HealthSpecialist(
+                                            birthday,
+                                            cityStr,
+                                            emailStr,
+                                            fullNameStr,
+                                            phoneNumberStr,
+                                            "health_specialist",
+                                            specialityStr,
+                                            FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                                     myRef.setValue(healthSpecialist);
 
