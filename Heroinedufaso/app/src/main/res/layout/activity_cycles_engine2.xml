@@ -12,5 +12,59 @@
         android:layout_height="75dp"
         android:background="@color/pink_100"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Calcul du Cycle Menstruel"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="34sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="153dp"
+        android:layout_height="47dp"
+        android:text="Calculer"
+        tools:layout_editor_absoluteX="129dp"
+        tools:layout_editor_absoluteY="295dp" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="173dp"
+        android:layout_height="37dp"
+        android:text="Cycle Regulier"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="117dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="349dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="SVP entrez vos jours"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="202dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="La durée de vos menstruations est de: "
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="412dp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Le debut de vos menstruations est le: "
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="445dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
