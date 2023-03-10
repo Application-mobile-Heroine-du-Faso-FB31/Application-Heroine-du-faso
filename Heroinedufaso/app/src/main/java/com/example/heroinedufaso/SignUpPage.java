@@ -137,6 +137,9 @@ public class SignUpPage extends AppCompatActivity  implements
                     }else if(role.equals("user")){
                         startActivity(new Intent(SignUpPage.this, HomePageUser.class));
                         finish();
+                    }else{
+                        startActivity(new Intent(SignUpPage.this, HomePageHealthSpecialist.class));
+                        finish();
                     }
 
                 }

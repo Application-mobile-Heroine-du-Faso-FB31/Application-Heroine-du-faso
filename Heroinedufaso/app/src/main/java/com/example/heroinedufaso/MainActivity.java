@@ -36,9 +36,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(firebaseCurrentUser != null){
-            startActivity(new Intent(MainActivity.this, HomePageUser.class));
-        }
     }
 
     @Override

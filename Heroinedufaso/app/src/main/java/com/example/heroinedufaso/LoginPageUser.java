@@ -249,7 +249,14 @@ public class LoginPageUser extends AppCompatActivity {
                             // we are sending our user to new activity.
 
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+
+                            if(isHealthSpecialist(user)){
+                                startActivity(new Intent(LoginPageUser.this, HomePageHealthSpecialist.class));
+                                finish();
+                            }else{
+                                updateUI(user);
+                            }
+
 
                         } else {
 
@@ -275,6 +282,29 @@ public class LoginPageUser extends AppCompatActivity {
         edtOTP.setText("");
         edtPhone.setText("");
         finish();
+    }
+
+    private boolean isHealthSpecialist(FirebaseUser user){
+
+        boolean [] isHealthSP = {false};
+
+        FirebaseDatabase.getInstance().getReference("healthSpecialist").
+                child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        HealthSpecialist healthSpecialist = snapshot.getValue(HealthSpecialist.class);
+                        if(healthSpecialist.getUid().equals(user.getUid())){
+                            isHealthSP[0] = true;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+        return isHealthSP[0];
     }
 
 
