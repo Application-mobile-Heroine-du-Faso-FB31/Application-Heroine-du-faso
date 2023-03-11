@@ -7,59 +7,72 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class CyclesEngine {
+
+    private LocalDate dateDuDernierSaignement;
+    private int dureeDuSaignement;
+    private LocalDate dateDebutMenstrues;
+    private final int DUREEDUCYCLEPARDEFAUT = 28;
+    private int dureeDuCycle;
+    private ArrayList<Integer> listeDeDureeDeCyclePrecedent;
+    private LocalDate dateOvulation;
+    private  LocalDate [] periodeFertilite;
+
+
     public CyclesEngine(){
     }
 
-    public CyclesEngine(boolean cycleRegulier, ArrayList<Integer> jours) {
-        this.cycleRegulier = cycleRegulier;
-        this.jours = jours;
-    }
-    private int duree_mentrues;
-    private boolean cycleRegulier;
-    private LocalDate date_debut_menstrues = LocalDate.now();
-    private int cycle_moyen = 28;
-    private int jours_debut_menstrues;
 
-    ArrayList<Integer> jours = new ArrayList<>();
 
-    private int calculMoyenneRegle() {
+    private void calculMoyenneRegle() {
         int sumOfDays = 0;
-        for (int i = 0; i < jours.size(); i++) {
-            sumOfDays = sumOfDays + jours.get(i);
+        for (int i = 0; i < listeDeDureeDeCyclePrecedent.size(); i++) {
+            sumOfDays = sumOfDays + listeDeDureeDeCyclePrecedent.get(i);
         }
-        return Math.round(sumOfDays / jours.size());
+        this.setDureeDuCycle(Math.round(sumOfDays/listeDeDureeDeCyclePrecedent.size()));
     }
 
-    public DurationDate calculerMenstrues() {
 
-        if (cycleRegulier) {
-            duree_mentrues = 4;
-        } else {
-            duree_mentrues = ThreadLocalRandom.current().nextInt(5, 7 + 1);
-        }
-        if (!cycleRegulier) {
-            jours_debut_menstrues = calculMoyenneRegle();
-            date_debut_menstrues = date_debut_menstrues.plusDays(jours_debut_menstrues);
-        } else if (cycleRegulier && duree_mentrues < cycle_moyen) {
-            jours_debut_menstrues = ThreadLocalRandom.current().nextInt(18, 28 + 1);
-            date_debut_menstrues = date_debut_menstrues.plusDays(jours_debut_menstrues);
-        } else {
-            jours_debut_menstrues = ThreadLocalRandom.current().nextInt(25, 32 + 1);
-            date_debut_menstrues = date_debut_menstrues.plusDays(jours_debut_menstrues);
-        }
 
-        return new DurationDate(duree_mentrues, date_debut_menstrues);
+
+    public LocalDate getDateDuDernierSaignement() {
+        return dateDuDernierSaignement;
+    }
+
+    public int getDureeDuSaignement() {
+        return dureeDuSaignement;
+    }
+
+    public void setDureeDuSaignement(int dureeDuSaignement) {
+        this.dureeDuSaignement = dureeDuSaignement;
+    }
+
+    public void setDateDuDernierSaignement(LocalDate dateDuDernierSaignement) {
+        this.dateDuDernierSaignement = dateDuDernierSaignement;
+    }
+
+    public LocalDate getDatDebutMenstrues() {
+        return dateDebutMenstrues;
+    }
+
+    public void setDatDebutMenstrues(LocalDate datDebutMenstrues) {
+        this.dateDebutMenstrues = datDebutMenstrues;
+    }
+
+    public int getDureeDuCycle() {
+        return dureeDuCycle;
+    }
+
+    public void setDureeDuCycle(int dureeDuCycle) {
+        this.dureeDuCycle = dureeDuCycle;
+    }
+
+    public LocalDate getDateOvulation() {
+        return dateOvulation;
+    }
+
+    public void setDateOvulation(){
+        this.dateDebutMenstrues = dateDebutMenstrues.plusDays(dureeDuCycle - 14);
     }
 
 }
 
-class DurationDate {
-    int duree_menstrues;
-    LocalDate date_debut_menstrues;
-
-    public DurationDate(int duree_menstrues, LocalDate date_debut_menstrues) {
-       this.date_debut_menstrues = date_debut_menstrues;
-       this.duree_menstrues = duree_menstrues;
-    }
-
-}
