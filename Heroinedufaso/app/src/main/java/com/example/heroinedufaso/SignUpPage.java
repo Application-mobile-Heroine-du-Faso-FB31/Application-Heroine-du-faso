@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,7 @@ public class SignUpPage extends AppCompatActivity  implements
     private TextToSpeech textToSpeech;
 
     private TextView birthdayOutput;
+    private ImageView btnHelp;
 
 
 
@@ -77,6 +79,7 @@ public class SignUpPage extends AppCompatActivity  implements
         voice = findViewById(R.id.Vocal_btn_page_creation);
         validate = findViewById(R.id.Valider_btn_page_creation);
         birthdayOutput = findViewById(R.id.birtdayTxtViewSignUP);
+        btnHelp = findViewById(R.id.BtnHelpSignupActivity);
 
 
 
@@ -99,6 +102,28 @@ public class SignUpPage extends AppCompatActivity  implements
 //            }
 //        });
 
+        btnHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int status) {
+                        if (status != TextToSpeech.ERROR) {
+                            // replace this Locale with whatever you want
+                            String messageLogin = "Afin de pouvoir compléter votre inscription s'il vous plaît " +
+                                    "veuillez fournir votre nom complet, " +
+                                    "ville de résidence et date de naissance. Si vous n'est pas capable de l'écrire, " +
+                                    "veuillez fournir ses informations vocalement à l'aide du bouton vocale. ";
+
+                            textToSpeech.setLanguage(Locale.FRENCH);
+
+                            textToSpeech.speak(messageLogin, TextToSpeech.QUEUE_FLUSH, null);
+
+                        }
+                    }
+                });
+            }
+        });
 
         birthday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,23 +264,7 @@ public class SignUpPage extends AppCompatActivity  implements
 //                            }
 //                        }, 2000);
                         progressDialog.dismiss();
-                        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-                            @Override
-                            public void onInit(int status) {
-                                if (status != TextToSpeech.ERROR) {
-                                    // replace this Locale with whatever you want
-                                    String messageLogin = "Afin de pouvoir compléter votre inscription s'il vous plaît " +
-                                            "veuillez fournir votre nom complet, " +
-                                            "ville de résidence et date de naissance. Si vous n'est pas capable de l'écrire, " +
-                                            "veuillez fournir ses informations vocalement à l'aide du bouton vocale. ";
 
-                                    textToSpeech.setLanguage(Locale.FRENCH);
-
-                                    textToSpeech.speak(messageLogin, TextToSpeech.QUEUE_FLUSH, null);
-
-                                }
-                            }
-                        });
 
                         return;
                     }

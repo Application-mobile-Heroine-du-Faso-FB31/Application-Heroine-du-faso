@@ -36,7 +36,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="#FBFBFB"
                 app:icon="@drawable/baseline_person_24"
-                app:iconSize="90dp" />
+                app:iconSize="75dp" />
 
             <Button
                 android:id="@+id/chat"
@@ -48,7 +48,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="#FBFBFB"
                 app:icon="@drawable/baseline_chat_24"
-                app:iconSize="90dp" />
+                app:iconSize="75dp" />
 
             <Button
                 android:id="@+id/forum"
@@ -59,7 +59,7 @@
                 android:drawableLeft="@drawable/icone_forum_page_utlisateur"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:icon="@drawable/noun_forum_1871927"
-                app:iconSize="90dp" />
+                app:iconSize="75dp" />
 
 
         </LinearLayout>
@@ -79,7 +79,7 @@
                 android:isScrollContainer="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:icon="@drawable/noun_consultation_3813168"
-                app:iconSize="90dp" />
+                app:iconSize="75dp" />
 
             <Button
                 android:id="@+id/denoncer"
@@ -90,7 +90,7 @@
                 android:drawableLeft="@drawable/icone_denoncer_page_utlisateur"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:icon="@drawable/baseline_thumb_down_24"
-                app:iconSize="90dp" />
+                app:iconSize="75dp" />
 
             <Button
                 android:id="@+id/menstruel"
@@ -101,7 +101,7 @@
                 android:drawableLeft="@drawable/icone_menstruel_page_utlisatrice"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:icon="@drawable/noun_calendar_4331175"
-                app:iconSize="90dp" />
+                app:iconSize="75dp" />
 
 
         </LinearLayout>
@@ -122,7 +122,7 @@
                 android:drawableLeft="@drawable/icone_carte_page_utlisateur"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:icon="@drawable/noun_hospital_map_3681219"
-                app:iconSize="90dp" />
+                app:iconSize="75dp" />
 
             <Button
                 android:id="@+id/quiz_home_user_activity"
@@ -133,7 +133,7 @@
                 android:drawableLeft="@drawable/icone_carte_page_utlisateur"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:icon="@drawable/quiz"
-                app:iconSize="90dp" />
+                app:iconSize="75dp" />
 
             <Button
                 android:id="@+id/notification"
@@ -144,20 +144,21 @@
                 android:drawableLeft="@drawable/icone_notification_page_utilisateur"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:icon="@drawable/baseline_notifications_active_24"
-                app:iconSize="90dp" />
+                app:iconSize="75dp" />
         </LinearLayout>
 
         <Button
             android:id="@+id/sign_out_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
             android:backgroundTint="#E37B9E"
             android:drawableLeft="@drawable/icone_chat_page_utilisateur"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FBFBFB"
             app:icon="@drawable/baseline_logout_24"
-            app:iconSize="90dp" />
+            app:iconSize="75dp" />
 
 
     </LinearLayout>

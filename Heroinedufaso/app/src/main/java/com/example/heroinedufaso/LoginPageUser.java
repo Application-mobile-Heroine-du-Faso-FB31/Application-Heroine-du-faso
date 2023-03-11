@@ -24,6 +24,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,6 +76,7 @@ public class LoginPageUser extends AppCompatActivity {
     private TextView resendCode;
 
     private TextToSpeech textToSpeech;
+    private ImageView btnHelp;
 
     @Override
     protected void onStart() {
@@ -82,6 +84,7 @@ public class LoginPageUser extends AppCompatActivity {
     }
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,11 +107,14 @@ public class LoginPageUser extends AppCompatActivity {
         message = findViewById(R.id.message_txt_view_login_user);
 
         resendCode = findViewById(R.id.rend_send_verification_code_txt_view);
+        btnHelp = findViewById(R.id.btnHelpLoginUser);
 
         headerLogin = "Connexion";
         headerVerification = "Vérification";
         messageLogin = "S'il vous plaît, veuillez entrez votre numéro de téléphone " +
                 "pour recevoir un code de vérification. ";
+
+        final boolean[] generate = {false};
 
         textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -120,7 +126,25 @@ public class LoginPageUser extends AppCompatActivity {
         });
 
 
+        btnHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!generate[0]){
+                    String messageLogin = "S'il vous plaît, veuillez entrez votre numéro de téléphone " +
+                            "pour recevoir un code de vérification. ";
 
+                    textToSpeech.speak(messageLogin, TextToSpeech.QUEUE_FLUSH, null);
+                }else{
+                    String phone = COUNTRY_CODE + edtPhone.getText().toString();
+
+                    sendVerificationCode(phone);
+
+                    messageVerification = "S'il vous plaît, veuillez entrer " +
+                            "le code de vérification envoyé au numéro " + phone;
+                    textToSpeech.speak(messageVerification, TextToSpeech.QUEUE_FLUSH, null);
+                }
+            }
+        });
 
 
 
@@ -148,13 +172,13 @@ public class LoginPageUser extends AppCompatActivity {
                     // if the text field is not empty we are calling our
 
                     // send OTP method for getting OTP from Firebase.
+                    generate[0] = true;
 
                     String phone = COUNTRY_CODE + edtPhone.getText().toString();
 
-                    sendVerificationCode(phone);
-
                     messageVerification = "S'il vous plaît, veuillez entrer " +
                             "le code de vérification envoyé au numéro " + phone;
+
 
                     header.setText(headerVerification);
                     message.setText(messageVerification);
@@ -167,7 +191,7 @@ public class LoginPageUser extends AppCompatActivity {
                     resendCode.setPaintFlags(resendCode.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
                     resendCode.setVisibility(View.VISIBLE);
 
-                    textToSpeech.speak(messageVerification, TextToSpeech.QUEUE_FLUSH, null);
+
 
                 }
 

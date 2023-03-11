@@ -19,6 +19,13 @@
     <!--        android:background="@drawable/roundimage"-->
     <!--        app:srcCompat="@drawable/baseline_person_pink_24" />-->
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:textAlignment="viewEnd"
+        app:srcCompat="@drawable/baseline_volume_up_24"
+        android:id="@+id/BtnHelpSignupActivity"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -68,10 +68,7 @@ public class MainActivity extends AppCompatActivity {
         userBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String messageLogin = "S'il vous plaît, veuillez entrez votre numéro de téléphone " +
-                        "pour recevoir un code de vérification. ";
 
-                textToSpeech.speak(messageLogin, TextToSpeech.QUEUE_FLUSH, null);
                 startActivity(new Intent(MainActivity.this, LoginPageUser.class));
             }
         });
