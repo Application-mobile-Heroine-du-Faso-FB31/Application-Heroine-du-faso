@@ -35,17 +35,17 @@
         android:layout_centerHorizontal="true"
 
         android:background="@drawable/input"
+        android:drawableLeft="@drawable/baseline_phone_android_24"
         android:importantForAutofill="no"
         android:inputType="phone"
+        android:padding="2dp"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/idBtnGetOtp"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.218"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.349"
-        android:drawableLeft="@drawable/baseline_phone_android_24"
-        android:padding="2dp"/>
+        app:layout_constraintVertical_bias="0.349" />
 
     <Button
 
@@ -58,16 +58,16 @@
         android:layout_below="@id/idEdtPhoneNumber"
 
 
-        android:layout_marginEnd="36dp"
-
+        android:background="@drawable/button_background"
         android:drawableLeft="@drawable/baseline_send_24"
         android:textAllCaps="false"
         app:icon="@drawable/baseline_arrow_forward_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.349"
-        android:background="@drawable/button_background"/>
+        app:layout_constraintVertical_bias="0.349" />
 
     <EditText
 
@@ -79,21 +79,20 @@
 
         android:layout_below="@id/idBtnGetOtp"
 
-        android:layout_marginEnd="20dp"
         android:background="@drawable/input"
+        android:drawableLeft="@drawable/baseline_password_24"
         android:hint="XXXXXX"
         android:importantForAutofill="no"
         android:inputType="phone"
+        android:padding="2dp"
         android:textAlignment="center"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/idBtnVerify"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.218"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.349"
-        android:drawableLeft="@drawable/baseline_password_24"
-        android:padding="2dp"/>
+        app:layout_constraintVertical_bias="0.349" />
 
     <Button
 
@@ -105,15 +104,16 @@
 
         android:layout_below="@id/idEdtOtp"
 
-        android:layout_marginEnd="36dp"
+        android:background="@drawable/button_background"
         android:textAllCaps="false"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:icon="@drawable/baseline_check_circle_outline_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.349"
-        android:background="@drawable/button_background"/>
+        app:layout_constraintVertical_bias="0.349" />
 
     <TextView
         android:id="@+id/header_txt_view_login_user"
@@ -124,22 +124,22 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.173" />
+        app:layout_constraintVertical_bias="0.159" />
 
     <TextView
         android:id="@+id/message_txt_view_login_user"
-        android:layout_width="350dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="S'il vous plaît, veuillez entrez votre numéro de téléphone pour recevoir un code de vérification. "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.248" />
+        app:layout_constraintVertical_bias="0.256" />
 
     <TextView
         android:id="@+id/rend_send_verification_code_txt_view"
@@ -147,7 +147,7 @@
         android:layout_height="wrap_content"
         android:text="Renvoyez le code de vérification"
         android:textStyle="bold"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.113"

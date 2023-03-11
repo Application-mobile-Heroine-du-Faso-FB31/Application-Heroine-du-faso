@@ -179,6 +179,8 @@ public class LoginPageUser extends AppCompatActivity {
                     messageVerification = "S'il vous plaît, veuillez entrer " +
                             "le code de vérification envoyé au numéro " + phone;
 
+                    sendVerificationCode(phone);
+
 
                     header.setText(headerVerification);
                     message.setText(messageVerification);
@@ -274,12 +276,9 @@ public class LoginPageUser extends AppCompatActivity {
 
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            if(isHealthSpecialist(user)){
-                                startActivity(new Intent(LoginPageUser.this, HomePageHealthSpecialist.class));
-                                finish();
-                            }else{
-                                updateUI(user);
-                            }
+
+
+                            updateUI(user);
 
 
                         } else {
@@ -308,28 +307,7 @@ public class LoginPageUser extends AppCompatActivity {
         finish();
     }
 
-    private boolean isHealthSpecialist(FirebaseUser user){
 
-        boolean [] isHealthSP = {false};
-
-        FirebaseDatabase.getInstance().getReference("healthSpecialist").
-                child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        HealthSpecialist healthSpecialist = snapshot.getValue(HealthSpecialist.class);
-                        if(healthSpecialist.getUid().equals(user.getUid())){
-                            isHealthSP[0] = true;
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-        return isHealthSP[0];
-    }
 
 
     private void sendVerificationCode(String number) {
