@@ -1,25 +1,36 @@
 package com.example.heroinedufaso;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 
 public class CyclesEngine {
-
-    private int calculMoyenneRegle(List jours) {
-        int x = 0;
-        for (int i = 0; i < jours.size(); i++) {
-            x++;
-        }
-        return (x / jours.size());
+    public CyclesEngine(){
     }
 
-    public DurationDate calculerMenstrues(boolean cycleRegulier, List jours) {
-        int duree_mentrues = 0;
-        LocalDate date_debut_menstrues = LocalDate.now();
-        int cycle_moyen = 28;
-        int jours_debut_menstrues = 0;
+    public CyclesEngine(boolean cycleRegulier, ArrayList<Integer> jours) {
+        this.cycleRegulier = cycleRegulier;
+        this.jours = jours;
+    }
+    private int duree_mentrues;
+    private boolean cycleRegulier;
+    private LocalDate date_debut_menstrues = LocalDate.now();
+    private int cycle_moyen = 28;
+    private int jours_debut_menstrues;
+
+    ArrayList<Integer> jours = new ArrayList<>();
+
+    private int calculMoyenneRegle() {
+        int sumOfDays = 0;
+        for (int i = 0; i < jours.size(); i++) {
+            sumOfDays = sumOfDays + jours.get(i);
+        }
+        return Math.round(sumOfDays / jours.size());
+    }
+
+    public DurationDate calculerMenstrues() {
 
         if (cycleRegulier) {
             duree_mentrues = 4;
@@ -27,7 +38,7 @@ public class CyclesEngine {
             duree_mentrues = ThreadLocalRandom.current().nextInt(5, 7 + 1);
         }
         if (!cycleRegulier) {
-            jours_debut_menstrues = calculMoyenneRegle(jours);
+            jours_debut_menstrues = calculMoyenneRegle();
             date_debut_menstrues = date_debut_menstrues.plusDays(jours_debut_menstrues);
         } else if (cycleRegulier && duree_mentrues < cycle_moyen) {
             jours_debut_menstrues = ThreadLocalRandom.current().nextInt(18, 28 + 1);

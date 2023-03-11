@@ -42,11 +42,11 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="349dp"
-        android:layout_height="40dp"
+        android:layout_width="238dp"
+        android:layout_height="34dp"
         android:ems="10"
         android:inputType="number"
-        android:text="SVP entrez vos jours"
+        android:text="SVP entrez la durée de votre saignement"
         android:textSize="12sp"
         tools:layout_editor_absoluteX="31dp"
         tools:layout_editor_absoluteY="202dp" />
