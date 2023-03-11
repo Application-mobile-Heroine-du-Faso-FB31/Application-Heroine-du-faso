@@ -17,21 +17,33 @@ public class CyclesEngine {
     private LocalDate dateOvulation;
     private  LocalDate [] periodeFertilite;
 
+    private LocalDate dateDuProchainSaignement;
+
 
     public CyclesEngine(){
+        periodeFertilite = new LocalDate[5];
+    }
+    public CyclesEngine(LocalDate dateDuDernierSaignement, int dureeDuSaignement, int dureeDuCycle){
+        this.dateDuDernierSaignement = dateDuDernierSaignement;
+        this.dureeDuCycle = dureeDuCycle;
+        this.dureeDuSaignement = dureeDuSaignement;
     }
 
 
 
-    private void calculMoyenneRegle() {
-        int sumOfDays = 0;
-        for (int i = 0; i < listeDeDureeDeCyclePrecedent.size(); i++) {
-            sumOfDays = sumOfDays + listeDeDureeDeCyclePrecedent.get(i);
+    public void calculMoyenneRegle() {
+
+        if(listeDeDureeDeCyclePrecedent.isEmpty()){
+            int sumOfDays = 0;
+            for (int i = 0; i < listeDeDureeDeCyclePrecedent.size(); i++) {
+                sumOfDays = sumOfDays + listeDeDureeDeCyclePrecedent.get(i);
+            }
+            this.setDureeDuCycle(Math.round(sumOfDays/listeDeDureeDeCyclePrecedent.size()));
+        }else{
+            this.setDureeDuCycle(DUREEDUCYCLEPARDEFAUT);
         }
-        this.setDureeDuCycle(Math.round(sumOfDays/listeDeDureeDeCyclePrecedent.size()));
+
     }
-
-
 
 
     public LocalDate getDateDuDernierSaignement() {
@@ -74,5 +86,24 @@ public class CyclesEngine {
         this.dateDebutMenstrues = dateDebutMenstrues.plusDays(dureeDuCycle - 14);
     }
 
+    public LocalDate[] getPeriodeFertilite() {
+        return periodeFertilite;
+    }
+
+    public void setPeriodeFertilite() {
+        this.periodeFertilite[0] = this.dateOvulation.minusDays(3);
+        this.periodeFertilite[1] = this.dateOvulation.minusDays(2);
+        this.periodeFertilite[2] = this.dateOvulation.minusDays(1);
+        this.periodeFertilite[3] = this.dateOvulation;
+        this.periodeFertilite[4] = this.dateOvulation.plusDays(1);
+    }
+
+    public LocalDate getDateDuProchainSaignement() {
+        return dateDuProchainSaignement;
+    }
+
+    public void setDateDuProchainSaignement() {
+        this.dateDuProchainSaignement = dateDuDernierSaignement.plusDays(dureeDuCycle);
+    }
 }
 
