@@ -7,103 +7,103 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class CyclesEngine {
+    private int bloodDuration;
+    private LocalDate dayOfStartOfTheLastPeriod;
+    private int cycleDuration;
+    private LocalDate dayOfOvulation;
+    private final LocalDate [] fertilizedPeriod = new LocalDate[5];
+    private LocalDate dayOfStartOfTheNextPeriod;
+    private ArrayList<LocalDate> bloodPeriod;
 
-    private LocalDate dateDuDernierSaignement;
-    private int dureeDuSaignement;
-    private LocalDate dateDebutMenstrues;
-    private final int DUREEDUCYCLEPARDEFAUT = 28;
-    private int dureeDuCycle;
-    private ArrayList<Integer> listeDeDureeDeCyclePrecedent;
-    private LocalDate dateOvulation;
-    private  LocalDate [] periodeFertilite;
-
-    private LocalDate dateDuProchainSaignement;
-
+    private final int CYCLEDURATION = 28;
 
     public CyclesEngine(){
-        periodeFertilite = new LocalDate[5];
-    }
-    public CyclesEngine(LocalDate dateDuDernierSaignement, int dureeDuSaignement, int dureeDuCycle){
-        this.dateDuDernierSaignement = dateDuDernierSaignement;
-        this.dureeDuCycle = dureeDuCycle;
-        this.dureeDuSaignement = dureeDuSaignement;
+        bloodPeriod = new ArrayList<>();
     }
 
+    public CyclesEngine(int bloodDuration, LocalDate dayOfStartOfTheLastPeriod, int cycleDuration) {
+        this.bloodDuration = bloodDuration;
+        this.dayOfStartOfTheLastPeriod = dayOfStartOfTheLastPeriod;
+        this.cycleDuration = cycleDuration;
+        bloodPeriod = new ArrayList<>();
+        setDayOfOvulation();
+        setBloodPeriodDays();
+        setFertilizedPeriodDays();
+        setDayOfStartOfTheNextPeriod();
+    }
 
 
-    public void calculMoyenneRegle() {
+    public int getCycleDuration() {
+        return cycleDuration;
+    }
 
-        if(listeDeDureeDeCyclePrecedent.isEmpty()){
-            int sumOfDays = 0;
-            for (int i = 0; i < listeDeDureeDeCyclePrecedent.size(); i++) {
-                sumOfDays = sumOfDays + listeDeDureeDeCyclePrecedent.get(i);
-            }
-            this.setDureeDuCycle(Math.round(sumOfDays/listeDeDureeDeCyclePrecedent.size()));
-        }else{
-            this.setDureeDuCycle(DUREEDUCYCLEPARDEFAUT);
+    public void setCycleDuration() {
+        this.cycleDuration = cycleDuration;
+    }
+
+    public LocalDate getDayOfStartOfTheLastPeriod() {
+        return dayOfStartOfTheLastPeriod;
+    }
+
+    public void setDayOfStartOfTheLastPeriod(LocalDate dayOfStartOfTheLastPeriod) {
+        this.dayOfStartOfTheLastPeriod = dayOfStartOfTheLastPeriod;
+    }
+
+    public int getBloodDuration() {
+        return bloodDuration;
+    }
+
+    public void setPeriodDuration(int bloodDuration) {
+        this.bloodDuration = bloodDuration;
+    }
+
+    public LocalDate getDayOfOvulation() {
+        return dayOfOvulation;
+    }
+
+    public void setDayOfOvulation() {
+        this.dayOfOvulation = dayOfStartOfTheLastPeriod.plusDays(cycleDuration - 14);
+    }
+
+    public LocalDate[] getFertilizedPeriod() {
+        return fertilizedPeriod;
+    }
+
+    public void setFertilizedPeriodDays(){
+        fertilizedPeriod[0] = dayOfOvulation.minusDays(3);
+        fertilizedPeriod[1] = dayOfOvulation.minusDays(2);
+        fertilizedPeriod[2] = dayOfOvulation.minusDays(1);
+        fertilizedPeriod[3] = dayOfOvulation;
+        fertilizedPeriod[4] = dayOfOvulation.plusDays(1);
+    }
+
+    public LocalDate getDayOfStartOfTheNextPeriod() {
+        return dayOfStartOfTheNextPeriod;
+    }
+
+    public void setDayOfStartOfTheNextPeriod() {
+        this.dayOfStartOfTheNextPeriod = dayOfStartOfTheLastPeriod.plusDays(cycleDuration);
+    }
+
+    public ArrayList<LocalDate> getBloodPeriod() {
+        return bloodPeriod;
+    }
+
+    public void setBloodPeriodDays() {
+        for(int i = 0; i < bloodDuration; i++){
+            bloodPeriod.add(dayOfStartOfTheLastPeriod.plusDays(i));
         }
-
     }
 
-
-    public LocalDate getDateDuDernierSaignement() {
-        return dateDuDernierSaignement;
-    }
-
-    public int getDureeDuSaignement() {
-        return dureeDuSaignement;
-    }
-
-    public void setDureeDuSaignement(int dureeDuSaignement) {
-        this.dureeDuSaignement = dureeDuSaignement;
-    }
-
-    public void setDateDuDernierSaignement(LocalDate dateDuDernierSaignement) {
-        this.dateDuDernierSaignement = dateDuDernierSaignement;
-    }
-
-    public LocalDate getDatDebutMenstrues() {
-        return dateDebutMenstrues;
-    }
-
-    public void setDatDebutMenstrues(LocalDate datDebutMenstrues) {
-        this.dateDebutMenstrues = datDebutMenstrues;
-    }
-
-    public int getDureeDuCycle() {
-        return dureeDuCycle;
-    }
-
-    public void setDureeDuCycle(int dureeDuCycle) {
-        this.dureeDuCycle = dureeDuCycle;
-    }
-
-    public LocalDate getDateOvulation() {
-        return dateOvulation;
-    }
-
-    public void setDateOvulation(){
-        this.dateDebutMenstrues = dateDebutMenstrues.plusDays(dureeDuCycle - 14);
-    }
-
-    public LocalDate[] getPeriodeFertilite() {
-        return periodeFertilite;
-    }
-
-    public void setPeriodeFertilite() {
-        this.periodeFertilite[0] = this.dateOvulation.minusDays(3);
-        this.periodeFertilite[1] = this.dateOvulation.minusDays(2);
-        this.periodeFertilite[2] = this.dateOvulation.minusDays(1);
-        this.periodeFertilite[3] = this.dateOvulation;
-        this.periodeFertilite[4] = this.dateOvulation.plusDays(1);
-    }
-
-    public LocalDate getDateDuProchainSaignement() {
-        return dateDuProchainSaignement;
-    }
-
-    public void setDateDuProchainSaignement() {
-        this.dateDuProchainSaignement = dateDuDernierSaignement.plusDays(dureeDuCycle);
+    public String toString(){
+        return "La date du de debut du cycle est : " + dayOfStartOfTheLastPeriod.toString() +
+                "\n La duree du cycle est : " + cycleDuration +
+                "\n La duree du saignement est : " + bloodDuration +
+                "\n La date du debut de saignement est : " + bloodPeriod.get(0).toString() +
+                "\n La date de la fin du saignement est : " + bloodPeriod.get(bloodPeriod.size() - 1).toString() +
+                "\n La date d'ovulation est : " + dayOfOvulation.toString() +
+                "\n La periode de fertilité est : " + fertilizedPeriod[0].toString() + " à " + fertilizedPeriod[4] +
+                "\n La date du prochain saignement est : " + dayOfStartOfTheNextPeriod.toString();
     }
 }
 
