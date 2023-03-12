@@ -6,17 +6,115 @@
     android:layout_height="match_parent"
     tools:context=".CyclesEngineActivity">
 
+    <TextView
+        android:id="@+id/textViewFertilityDate"
+        android:layout_width="362dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Période de fertilité est "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOvulationDate" />
+
+    <TextView
+        android:id="@+id/textViewOvulationDate"
+        android:layout_width="359dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:text="La date d'ovulation est"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCalcul" />
+
+    <TextView
+        android:id="@+id/textViewNextPeriodDate"
+        android:layout_width="361dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="La date du prochain saignement est"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFertilityDate" />
+
+    <TextView
+        android:id="@+id/textViewBloodDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="49dp"
+        android:text="Durée du saignement:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textLastPeriod" />
+
+    <TextView
+        android:id="@+id/textCycleDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="64dp"
+        android:text="Durée de la période: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBloodDuration" />
+
+    <TextView
+        android:id="@+id/textLastPeriod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="68dp"
+        android:text="Date du début du dernier cycle:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout" />
+
+    <EditText
+        android:id="@+id/editTextNumberBloodDuration"
+        android:layout_width="83dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="128dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLastPeriodDate" />
+
+    <EditText
+        android:id="@+id/editTextNumberPeriodDuration"
+        android:layout_width="86dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="128dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberBloodDuration" />
+
+    <Button
+        android:id="@+id/buttonCalcul"
+        android:layout_width="184dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="129dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="129dp"
+        android:text="Calculer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textCycleDuration" />
+
     <LinearLayout
         android:id="@+id/linearlayout"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:background="@color/pink_100"
         android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Calcul du Cycle Menstruel"
             android:textAlignment="center"
@@ -25,46 +123,17 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="153dp"
-        android:layout_height="47dp"
-        android:text="Calculer"
-        tools:layout_editor_absoluteX="129dp"
-        tools:layout_editor_absoluteY="295dp" />
-
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="173dp"
-        android:layout_height="37dp"
-        android:text="Cycle Regulier"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="117dp" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="238dp"
-        android:layout_height="34dp"
-        android:ems="10"
-        android:inputType="number"
-        android:text="SVP entrez la durée de votre saignement"
-        android:textSize="12sp"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="202dp" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonLastPeriodDate"
+        style="?android:spinnerStyle"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:text="La durée de vos menstruations est de: "
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="412dp" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Le debut de vos menstruations est le: "
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="445dp" />
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="28dp"
+        android:onClick="openDatePicker"
+        android:text="JAN 01 2020"
+        android:textColor="@color/black"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
