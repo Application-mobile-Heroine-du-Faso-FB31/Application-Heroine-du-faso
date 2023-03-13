@@ -60,6 +60,9 @@ public class CyclesEngineActivity extends AppCompatActivity {
                     textViewNextPeriodDate.setText("La date du prochain saignement est: " + cycleEngineUser.getDayOfStartOfTheNextPeriod().toString());
                     textViewOvulationDate.setText("La date d'ovulation est le: " + cycleEngineUser.getDayOfOvulation().toString());
 
+                    editTextBloodDuration.setText("");
+                    editTextCycleDuration.setText("");
+
 
                 }
 
