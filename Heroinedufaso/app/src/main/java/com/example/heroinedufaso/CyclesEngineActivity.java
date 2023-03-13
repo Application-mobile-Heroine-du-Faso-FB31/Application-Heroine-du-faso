@@ -56,9 +56,10 @@ public class CyclesEngineActivity extends AppCompatActivity {
                     cycleEngineUser = new CyclesEngine(Integer.parseInt(editTextBloodDuration.getText().toString()),
                             LocalDate.parse(buttonLastPeriodDate.getText().toString()), Integer.parseInt(editTextCycleDuration.getText().toString()));
 
-                    textViewFertilityDate.setText("La période de fertilité est: " + cycleEngineUser.getFertilizedPeriod().toString());
+                    textViewFertilityDate.setText("La période de fertilité est: " + cycleEngineUser.getFertilizedPeriod()[0].toString() + " à " + cycleEngineUser.getFertilizedPeriod()[4].toString());
                     textViewNextPeriodDate.setText("La date du prochain saignement est: " + cycleEngineUser.getDayOfStartOfTheNextPeriod().toString());
                     textViewOvulationDate.setText("La date d'ovulation est le: " + cycleEngineUser.getDayOfOvulation().toString());
+
 
                 }
 
