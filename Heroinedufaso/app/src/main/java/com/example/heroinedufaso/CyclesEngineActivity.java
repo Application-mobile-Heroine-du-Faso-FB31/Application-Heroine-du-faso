@@ -1,3 +1,12 @@
+ /***************************************************************************************
+ *    Title: Date Picker source code
+ *    Author: Code With Cal
+ *    Date: December 19 2020
+ *    Code version: 1.0
+ *    Availability: https://github.com/codeWithCal/DatePickerTutorial
+ *
+ ***************************************************************************************/
+
 package com.example.heroinedufaso;
 
 import androidx.appcompat.app.AppCompatActivity;
