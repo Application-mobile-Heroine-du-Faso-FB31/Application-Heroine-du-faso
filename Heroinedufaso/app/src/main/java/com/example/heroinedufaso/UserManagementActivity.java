@@ -26,8 +26,8 @@ public class UserManagementActivity extends AppCompatActivity {
         txtCity = findViewById(R.id.city_txtV_profile_management);
         txtBirthday = findViewById(R.id.birthday_txtV_profile_management);
         txtRole = findViewById(R.id.role_txtV_profile_management);
-        deleteAccount = findViewById(R.id.delete_profile_btn);
-        disableEnableAccount = findViewById(R.id.disable_profile_btn);
+//        deleteAccount = findViewById(R.id.delete_profile_btn);
+//        disableEnableAccount = findViewById(R.id.disable_profile_btn);
         profile = findViewById(R.id.profile_image_profile_activity_management);
 
 
@@ -47,6 +47,8 @@ public class UserManagementActivity extends AppCompatActivity {
         txtRole.setText(getIntent().getStringExtra("role"));
         txtCity.setText(getIntent().getStringExtra("city"));
         txtBirthday.setText(getIntent().getStringExtra("birthday"));
+
+
 
         progressDialog.dismiss();
     }
