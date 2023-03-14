@@ -61,7 +61,8 @@ public class UserListActivity extends AppCompatActivity {
                         .putExtra("img_of_the_user", users.get(position).getPhotoProfileURL())
                         .putExtra("role", users.get(position).getRole())
                         .putExtra("city", users.get(position).getCity())
-                        .putExtra("phone_number", users.get(position).getPhoneNumber()));
+                        .putExtra("phone_number", users.get(position).getPhoneNumber())
+                        .putExtra("birthday", users.get(position).getBirthday()));
             }
         };
 
