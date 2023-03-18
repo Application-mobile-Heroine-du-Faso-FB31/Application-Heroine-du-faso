@@ -2,9 +2,12 @@ package com.example.heroinedufaso;
 
 
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,6 +24,8 @@ public class HomePageUser extends AppCompatActivity {
 
     private Button periodEngineBtn;
 
+    private Button startQuizz;
+
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
@@ -34,6 +39,7 @@ public class HomePageUser extends AppCompatActivity {
         signOutBtn = (Button) findViewById(R.id.sign_out_btn);
         chatListBtn = (Button) findViewById(R.id.chat);
         periodEngineBtn = (Button) findViewById(R.id.menstruel);
+        startQuizz=  (Button) findViewById(R.id.quiz_home_user_activity);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
@@ -67,6 +73,14 @@ public class HomePageUser extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomePageUser.this, CyclesEngineActivity.class));
+            }
+        });
+
+        startQuizz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(HomePageUser.this, UserActivity.class);
+                startActivity(i);
             }
         });
 

@@ -3,30 +3,32 @@ package com.example.heroinedufaso;
 import static java.lang.Thread.sleep;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
+
+import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 
-import com.google.android.material.animation.AnimationUtils;
 
 public class UserActivity extends AppCompatActivity {
 
-    private TextView AppName;
+    private TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        AppName=findViewById(R.id.AppName);
+        title=findViewById(R.id.q_title);
 
 
-        Animation anim= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.myanim);
-        AppName.setAnimation(anim);
+
+       Animation anim= AnimationUtils.loadAnimation(this,R.anim.myanim);
+        title.setAnimation(anim);
 
         new Thread(new Runnable() {
             @Override
@@ -37,8 +39,6 @@ public class UserActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                Intent intent =new Intent (UserActivity.this,MainActivity.class);
-                startActivity(intent);
             }
         }).start();
 
