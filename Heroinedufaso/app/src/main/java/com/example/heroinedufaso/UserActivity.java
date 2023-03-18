@@ -25,7 +25,7 @@ public class UserActivity extends AppCompatActivity {
         AppName=findViewById(R.id.AppName);
 
 
-        Animation anim= AnimationUtils.loadAnimation(this,R.anim.myanim);
+        Animation anim= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.myanim);
         AppName.setAnimation(anim);
 
         new Thread(new Runnable() {
