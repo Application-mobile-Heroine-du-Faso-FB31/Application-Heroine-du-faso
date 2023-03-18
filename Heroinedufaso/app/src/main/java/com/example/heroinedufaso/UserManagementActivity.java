@@ -44,7 +44,13 @@ public class UserManagementActivity extends AppCompatActivity {
 
         txtFullName.setText(getIntent().getStringExtra("full_name_of_the_user"));
         txtPhoneNumber.setText(getIntent().getStringExtra("phone_number"));
-        txtRole.setText(getIntent().getStringExtra("role"));
+
+        if(getIntent().getStringExtra("role").equals("user")){
+            txtRole.setText("Utilisatrice");
+        }else{
+            txtRole.setText("Spécialiste de la santé");
+        }
+
         txtCity.setText(getIntent().getStringExtra("city"));
         txtBirthday.setText(getIntent().getStringExtra("birthday"));
 
