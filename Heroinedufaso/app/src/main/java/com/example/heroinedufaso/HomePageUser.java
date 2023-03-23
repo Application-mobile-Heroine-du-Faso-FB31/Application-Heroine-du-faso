@@ -79,7 +79,7 @@ public class HomePageUser extends AppCompatActivity {
         startQuizz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(HomePageUser.this, UserActivity.class);
+                Intent i = new Intent(HomePageUser.this, QuizzActivity.class);
                 startActivity(i);
             }
         });
