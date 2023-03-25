@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="20dp"
+    android:orientation="vertical"
     tools:context=".QuestionsActivity">
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/quest_num"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </LinearLayout>
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="1/10"
+        android:textColor="@color/pink_300"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="40dp" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/questionText"
         android:layout_width="match_parent"
-        android:layout_height="176dp"
+        android:layout_height="200dp"
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
@@ -34,35 +40,20 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="16dp" />
 
-    <TextView
-        android:id="@+id/quest_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="1/10"
-        android:textColor="@color/pink_300"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="40dp"
-        tools:ignore="MissingConstraints" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/questionText"
         app:layout_constraintVertical_bias="1.0">
 
         <Button
@@ -106,16 +97,12 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/buttonExit"
@@ -131,19 +118,4 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/countdown"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:text="10"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:background="@drawable/round_corner"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteX="325dp" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
