@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -17,120 +19,105 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionsActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView questions;
-    private Button option1, option2, option3 , choose, exit;
+    private TextView questions,qCount,timer;
+    private Button option1, option2, option3 , exit;
 
     private List<Question> questionList;
 
+    private CountDownTimer countDown;
+
     private int questNum;
+
+    private int score;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
+
         questions=findViewById(R.id.textView8);
+        qCount=findViewById(R.id.quest_num);
+        timer=findViewById(R.id.countdown);
 
         option1=findViewById(R.id.Option1);
         option2=findViewById(R.id.Option2);
         option3=findViewById(R.id.Option3);
 
-        choose=findViewById(R.id.buttonChoose);
         exit=findViewById(R.id.buttonExit);
 
         option1.setOnClickListener(this);
         option2.setOnClickListener(this);
         option3.setOnClickListener(this);
 
-        choose.setOnClickListener(this);exit.setOnClickListener(this);
-
         getQuestionsList();
+
     }
 
     private void getQuestionsList(){
         questionList=new ArrayList<>();
-        questionList.add(new Question("Question 1","Option A","Option B","Option C",1,2,3));
-        questionList.add(new Question("Question 2","Option C","Option B","Option A",3,2,3));
-        questionList.add(new Question("Question 3","Option B","Option A","Option C",2,2,3));
-        questionList.add(new Question("Question 4","Option A","Option C","Option B",1,2,3));
-        questionList.add(new Question("Question 5","Option C","Option A","Option B",3,2,3));
-
+        questionList.add(new Question("Question 1","Option A","Option B","Option C",2));
+        questionList.add(new Question("Question 2","Option A","Option B","Option C",3));
+        questionList.add(new Question("Question 3 ","Option A","Option B","Option C",1));
+        questionList.add(new Question("Question 4 ","Option A","Option B","Option C",3));
+        questionList.add(new Question("Question 5 ","Option A","Option B","Option C",2));
         setQuestion();
     }
 
     private void setQuestion(){
+        timer.setText(String.valueOf(10));
         questions.setText(questionList.get(0).getQuestion());
         option1.setText(questionList.get(0).getOptionA());
         option2.setText(questionList.get(0).getOptionB());
         option3.setText(questionList.get(0).getOptionC());
 
+        qCount.setText(String.valueOf(1)+"/"+String.valueOf(questionList.size()));
+        startTimer();
+
         questNum=0;
+
     }
 
-    @Override
-    public void onClick(View view) {
-        int selectOption =0;
-
-        switch (view.getId()){
-            case R.id.Option1:
-                selectOption=1;
-                break;
-            case R.id.Option2:
-                selectOption=2;
-                break;
-            case R.id.Option3:
-                selectOption=3;
-                break;
-            default:
-        }
-
-        checkAnswer(selectOption,view);
-    }
-
-    private void checkAnswer(int selectOption,View view){
-        if (selectOption==questionList.get(questNum).getCorrectAns()){
-            //Right Answer
-            ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-
-        }
-
-        else{
-            //wrong answer
-            ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-            switch (questionList.get(questNum).getCorrectAns()){
-                case 1:
-                    option1.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-
-                case 2:
-                    option2.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-
-                case 3:
-                    option3.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-            }
-        }
-        Handler handler=new Handler();
-        handler.postDelayed(new Runnable() {
+    private void startTimer() {
+        CountDownTimer countDown=new CountDownTimer(12000,1000) {
             @Override
-            public void run() {
-                changeQuestion();
+            public void onTick(long millisUntilFinished) {
+                if (millisUntilFinished<10){
+                    timer.setText(String.valueOf(millisUntilFinished/1000));
+                }
             }
-        },2000);
 
+            @Override
+            public void onFinish() {
+                changeQuestion();
+
+            }
+        };
+        countDown.start();
     }
 
     private void changeQuestion(){
-        if (questNum<questionList.size()-1) {
+        if (questNum<questionList.size()-1)
+        {
             questNum++;
             playAnim(questions,0,0);
-            playAnim(option1,0,0);
-            playAnim(option2,0,0);
-            playAnim(option3,0,0);
+            playAnim(option1,0,1);
+            playAnim(option2,0,2);
+            playAnim(option3,0,3);
+
+            qCount.setText(String.valueOf(questNum+1)+"/"+String.valueOf(questionList.size()));
+            timer.setText(String.valueOf(10));
+            startTimer();
+
+
 
         } else{
             //go to score activity
-            //Intent intent=new Intent(QuestionsActivity.this,ScoreActivity.class);
-            //startActivity(intent);
-            //QuestionsActivity.this.finish();
+            Intent intent=new Intent(QuestionsActivity.this,ScoreActivity.class);
+            intent.putExtra("PointsTotaux", String.valueOf(score)+"/"+String.valueOf(questionList.size()));
+            startActivity(intent);
+            QuestionsActivity.this.finish();
+            startTimer();
         }
     }
 
@@ -164,8 +151,10 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
                                     ((Button)view ).setText(questionList.get(questNum).getOptionC());
                                     break;
                             }
-                            if ((viewNum!=0))
-                                ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("@color/pink_300")));
+//                           if (viewNum!=0)
+//                               ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("B5627E")));
+
+
 
                             playAnim(view,1,viewNum);
 
@@ -189,5 +178,69 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
 
 
     }
+    @Override
+    public void onClick(View view) {
+        int selectOption =0;
+
+        switch (view.getId())
+        {
+            case R.id.Option1:
+                selectOption=1;
+                break;
+
+            case R.id.Option2:
+                selectOption=2;
+                break;
+
+            case R.id.Option3:
+                selectOption=3;
+                break;
+
+            default:
+        }
+        checkAnswer(selectOption,view);
+    }
+
+    private void checkAnswer(int selectOption,View view){
+        if (selectOption==questionList.get(questNum).getCorrectAns()){
+            //Right Answer
+            ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            score++;
+
+        }
+
+        else{
+            //wrong answer
+            ((Button)view).setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            switch (questionList.get(questNum).getCorrectAns()){
+                case 1:
+                    option1.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+
+                case 2:
+                    option2.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+
+                case 3:
+                    option3.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            }
+        }
+        Handler handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                option1.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(181,98,126)));
+                option2.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(181,98,126)));
+                option3.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(181,98,126)));
+                changeQuestion();
+            }
+        },2000);
+
+    }
+
+
+
+
+
+
+
 
 }

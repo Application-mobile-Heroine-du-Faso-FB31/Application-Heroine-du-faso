@@ -15,10 +15,13 @@
         android:theme="@style/Theme.HeroineDuFaso"
         tools:targetApi="31">
         <activity
-            android:name=".QuestionsActivity"
+            android:name=".ScoreActivity"
             android:exported="false" />
         <activity
-            android:name=".QuestionActivity"
+            android:name=".Question"
+            android:exported="false" />
+        <activity
+            android:name=".QuestionsActivity"
             android:exported="false" />
         <activity
             android:name=".QuizzActivity"

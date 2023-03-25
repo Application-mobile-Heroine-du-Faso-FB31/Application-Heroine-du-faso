@@ -8,15 +8,22 @@ public class Question {
     private String optionC;
     private int correctAns;
 
-    private int choose,exit;
+    private int exit;
 
-    public Question(String question, String optionA, String optionB, String optionC, int correctAns, int choose, int exit) {
+    public Question(String question, String optionA, String optionB, String optionC, int correctAns){
         this.question = question;
         this.optionA = optionA;
         this.optionB = optionB;
         this.optionC = optionC;
         this.correctAns = correctAns;
-        this.choose = choose;
+    }
+
+    public Question(String question, String optionA, String optionB, String optionC, int correctAns, int exit) {
+        this.question = question;
+        this.optionA = optionA;
+        this.optionB = optionB;
+        this.optionC = optionC;
+        this.correctAns = correctAns;
         this.exit = exit;
     }
 
@@ -60,13 +67,6 @@ public class Question {
         this.correctAns = correctAns;
     }
 
-    public int getChoose() {
-        return choose;
-    }
-
-    public void setChoose(int choose) {
-        this.choose = choose;
-    }
 
     public int getExit() {
         return exit;
