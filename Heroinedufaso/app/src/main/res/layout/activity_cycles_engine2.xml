@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:baselineAligned="true">
 
+
             <TextView
                 android:id="@+id/textLastPeriod"
                 android:layout_width="wrap_content"
@@ -62,14 +63,21 @@
             android:layout_height="wrap_content"
             android:padding="5dp">
 
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/baseline_water_drop_24" />
+
             <TextView
                 android:id="@+id/textViewBloodDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Durée du saignement:"
+                android:layout_margin="10dp"
+                android:text="Durée de règle :"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textLastPeriod"
-                android:layout_margin="10dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/textLastPeriod" />
 
             <EditText
                 android:id="@+id/editTextNumberBloodDuration"
@@ -83,6 +91,8 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/buttonLastPeriodDate" />
+
+
 
         </LinearLayout>
         <LinearLayout
@@ -122,6 +132,15 @@
             app:layout_constraintTop_toBottomOf="@+id/textCycleDuration" />
 
         <TextView
+            android:id="@+id/textViewBloodDatePeriod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="La periode de règle est : "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewOvulationDate" />
+
+        <TextView
             android:id="@+id/textViewFertilityDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -143,7 +162,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="La date du prochain saignement est"
+            android:text="La date du début de prochaine règle est"
             app:layout_constraintTop_toBottomOf="@+id/textViewFertilityDate" />
 
 

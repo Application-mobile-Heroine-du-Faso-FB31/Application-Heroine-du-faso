@@ -11,6 +11,7 @@ package com.example.heroinedufaso;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -31,10 +32,11 @@ public class CyclesEngineActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private EditText editTextBloodDuration, editTextCycleDuration;
     private Button buttonCalcul, buttonLastPeriodDate;
-    private TextView textViewFertilityDate, textViewOvulationDate, textViewNextPeriodDate;
+    private TextView textViewFertilityDate, textViewOvulationDate, textViewNextPeriodDate, txtBloodPeriod;
 
     private CyclesEngine cycleEngineUser;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,7 @@ public class CyclesEngineActivity extends AppCompatActivity {
         textViewNextPeriodDate = findViewById(R.id.textViewNextPeriodDate);
         buttonCalcul = (Button) findViewById(R.id.buttonCalcul);
         buttonLastPeriodDate = (Button) findViewById(R.id.buttonLastPeriodDate);
+        txtBloodPeriod = findViewById(R.id.textViewBloodDatePeriod);
         initDatePicker();
         buttonLastPeriodDate.setText(getTodaysDate());
 
@@ -63,10 +66,26 @@ public class CyclesEngineActivity extends AppCompatActivity {
 
                     cycleEngineUser = new CyclesEngine(Integer.parseInt(editTextBloodDuration.getText().toString()),
                             LocalDate.parse(buttonLastPeriodDate.getText().toString()), Integer.parseInt(editTextCycleDuration.getText().toString()));
+                    int bloodPeriodSize = cycleEngineUser.getBloodPeriod().size();
 
-                    textViewFertilityDate.setText("La période de fertilité est: " + cycleEngineUser.getFertilizedPeriod()[0].toString() + " à " + cycleEngineUser.getFertilizedPeriod()[4].toString());
-                    textViewNextPeriodDate.setText("La date du prochain saignement est: " + cycleEngineUser.getDayOfStartOfTheNextPeriod().toString());
-                    textViewOvulationDate.setText("La date d'ovulation est le: " + cycleEngineUser.getDayOfOvulation().toString());
+                    textViewFertilityDate.setText("La période de fertilité est: " +
+                            cycleEngineUser.getFertilizedPeriod()[0].getDayOfMonth() + "/" +
+                            cycleEngineUser.getFertilizedPeriod()[0].getMonthValue() + " au " +
+                            cycleEngineUser.getFertilizedPeriod()[4].getDayOfMonth() + "/" +
+                            cycleEngineUser.getFertilizedPeriod()[4].getMonthValue());
+                    textViewNextPeriodDate.setText("La date du prochain saignement est: " + cycleEngineUser.getDayOfStartOfTheNextPeriod().getDayOfMonth() + "/" +
+                             cycleEngineUser.getDayOfStartOfTheNextPeriod().getMonthValue());
+
+
+                    textViewOvulationDate.setText("La date d'ovulation est le: " +
+                            cycleEngineUser.getDayOfOvulation().getDayOfMonth() + "/"
+                            + cycleEngineUser.getDayOfOvulation().getMonthValue());
+
+
+                    txtBloodPeriod.setText("La periode de règle est : " + cycleEngineUser.getBloodPeriod().get(0).getDayOfMonth() + "/"
+                                            + cycleEngineUser.getBloodPeriod().get(0).getMonthValue() + " au " +
+                                             cycleEngineUser.getBloodPeriod().get(bloodPeriodSize -1).getDayOfMonth() + "/" +
+                                            cycleEngineUser.getBloodPeriod().get(bloodPeriodSize - 1).getMonthValue());
 
                     editTextBloodDuration.setText("");
                     editTextCycleDuration.setText("");
