@@ -123,14 +123,14 @@
                 app:iconSize="75dp" />
 
             <Button
-                android:id="@+id/announcement_home_adm_activity"
+                android:id="@+id/quiz_home_adm_activity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
                 android:backgroundTint="#DE7B99"
                 android:drawableLeft="@drawable/icone_carte_page_utlisateur"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:icon="@drawable/noun_announcement_1423401"
+                app:icon="@drawable/baseline_quiz_24"
                 app:iconSize="75dp" />
 
             <Button

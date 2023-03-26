@@ -28,6 +28,7 @@ public class HomePageUser extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
+    private Button postBtn;
 
 
     @Override
@@ -42,6 +43,7 @@ public class HomePageUser extends AppCompatActivity {
         startQuizz=  (Button) findViewById(R.id.quiz_home_user_activity);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+        postBtn = findViewById(R.id.denoncer);
 
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +83,13 @@ public class HomePageUser extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(HomePageUser.this, QuizzActivity.class);
                 startActivity(i);
+            }
+        });
+
+        postBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePageUser.this, DenociationActivity.class));
             }
         });
 

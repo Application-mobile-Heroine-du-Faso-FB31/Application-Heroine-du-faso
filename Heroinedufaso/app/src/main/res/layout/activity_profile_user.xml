@@ -165,7 +165,7 @@
             android:layout_height="63dp"
             android:layout_margin="20dp"
             android:background="@drawable/button_background"
-            android:text="Modiier" />
+            android:text="Modifier" />
 
 
     </LinearLayout>

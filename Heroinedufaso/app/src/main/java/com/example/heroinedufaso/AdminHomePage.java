@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class AdminHomePage extends AppCompatActivity {
 
-    private Button profile, chat, forumManagement, consultation, news, periodCalculator, userList, announcementEvent, notification, signOut;
+    private Button profile, chat, forumManagement, consultation, news, periodCalculator, userList, quizBtn, notification, signOut;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
@@ -30,7 +30,7 @@ public class AdminHomePage extends AppCompatActivity {
         news = findViewById(R.id.publication_adm);
         periodCalculator = findViewById(R.id.menstruel_adm);
         userList = findViewById(R.id.user_list_adm);
-        announcementEvent = findViewById(R.id.announcement_home_adm_activity);
+        quizBtn = findViewById(R.id.quiz_home_adm_activity);
         signOut = findViewById(R.id.sign_out_btn_adm);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -75,6 +75,13 @@ public class AdminHomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AdminHomePage.this, UserListActivity.class));
+            }
+        });
+
+        news.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminHomePage.this, DenociationActivity.class));
             }
         });
 
