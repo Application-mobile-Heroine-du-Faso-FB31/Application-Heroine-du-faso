@@ -85,5 +85,12 @@ public class AdminHomePage extends AppCompatActivity {
             }
         });
 
+        quizBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminHomePage.this, QuizAdmActivity.class));
+            }
+        });
+
     }
 }
