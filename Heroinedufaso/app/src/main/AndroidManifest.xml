@@ -15,6 +15,9 @@
         android:theme="@style/Theme.HeroineDuFaso"
         tools:targetApi="31">
         <activity
+            android:name=".ConsultationSpecialist"
+            android:exported="false" />
+        <activity
             android:name=".CreatePostActivity"
             android:exported="false" />
         <activity
