@@ -8,7 +8,8 @@ public class Question {
     private String optionC;
     private int correctAns;
 
-    private int exit;
+
+    public Question(){}
 
     public Question(String question, String optionA, String optionB, String optionC, int correctAns){
         this.question = question;
@@ -18,14 +19,7 @@ public class Question {
         this.correctAns = correctAns;
     }
 
-    public Question(String question, String optionA, String optionB, String optionC, int correctAns, int exit) {
-        this.question = question;
-        this.optionA = optionA;
-        this.optionB = optionB;
-        this.optionC = optionC;
-        this.correctAns = correctAns;
-        this.exit = exit;
-    }
+
 
     public String getQuestion() {
         return question;
@@ -68,11 +62,4 @@ public class Question {
     }
 
 
-    public int getExit() {
-        return exit;
-    }
-
-    public void setExit(int exit) {
-        this.exit = exit;
-    }
 }

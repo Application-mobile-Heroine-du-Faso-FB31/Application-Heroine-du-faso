@@ -6,4 +6,83 @@
     android:layout_height="match_parent"
     tools:context=".AddQuestionActivity">
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajouter une question "
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.107" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.4">
+
+        <EditText
+            android:id="@+id/edtQuestionTxtAddQ"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:ems="10"
+            android:hint="Question"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/edtOptionA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:ems="10"
+            android:hint="Option A"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/edtOptionB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:ems="10"
+            android:hint="Option B"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/edtOptionC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:ems="10"
+            android:hint="Option C"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/correctAnsNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:ems="10"
+            android:hint="Reponse correct"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/addQuestionAddQuestionActBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_background"
+            android:padding="10dp"
+            android:text="Ajouter" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
