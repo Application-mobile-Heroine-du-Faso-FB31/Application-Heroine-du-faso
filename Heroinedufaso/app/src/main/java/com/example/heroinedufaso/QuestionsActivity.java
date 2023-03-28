@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -15,6 +16,12 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,12 +54,18 @@ public class QuestionsActivity extends AppCompatActivity {
         option3=findViewById(R.id.Option3);
 
         exit=findViewById(R.id.buttonExit);
+        questionList=new ArrayList<>();
         questNum = 1;
         score = 0;
 
 //        option1.setOnClickListener(this);
 //        option2.setOnClickListener(this);
 //        option3.setOnClickListener(this);
+
+
+
+
+
 
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -256,12 +269,12 @@ public class QuestionsActivity extends AppCompatActivity {
 
 
         getQuestionsList();
-        showQuestion(0);
+
 
     }
 
     private void showQuestion(int pos) {
-        qCount.setText(questNum + "/" + questionList.size());
+        qCount.setText("Question " + questNum);
         option1.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(181,98,126)));
         option2.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(181,98,126)));
         option3.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(181,98,126)));
@@ -272,13 +285,50 @@ public class QuestionsActivity extends AppCompatActivity {
 
     }
 
+    private void loading(){
+        CustomProgressDialog dialog =  new CustomProgressDialog(QuestionsActivity.this);
+        dialog.show();
+
+        Handler handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dialog.dismiss();
+            }
+        },2000);
+
+
+    }
+
     private void getQuestionsList(){
-        questionList=new ArrayList<>();
-        questionList.add(new Question("Question 1","Blue","Red","Green",1));
-        questionList.add(new Question("Question 2","Option A","Option B","Option C",3));
-        questionList.add(new Question("Question 3 ","Option A","Option B","Option C",1));
-        questionList.add(new Question("Question 4 ","Option A","Option B","Option C",3));
-        questionList.add(new Question("Question 5 ","Option A","Option B","Option C",2));
+
+
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("questions");
+
+        loading();
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Question question = dataSnapshot.getValue(Question.class);
+                    questionList.add(question);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        questionList.add(new Question("Qu'est-ce que la menstruation ?","La période de la vie où une femme peut tomber enceinte","Le moment où une femme ovule","Le moment où une femme saigne de l'utérus",3));
+        questionList.add(new Question("Qu'est-ce que le cancer du sein ?","Une maladie qui affecte le système digestif","Une maladie qui affecte le système reproducteur féminin","Une maladie qui affecte les glandes mammaires",3));
+        questionList.add(new Question("Qu'est-ce que la contraception ?","Une méthode pour augmenter les chances de tomber enceinte","Une méthode pour réduire les chances de tomber enceinte","Une méthode pour arrêter les menstruations",2));
+        questionList.add(new Question("Qu'est-ce que l'endométriose ?","Une maladie qui affecte les organes reproducteurs féminins","Une maladie qui affecte les voies urinaires","Une maladie qui affecte les poumons",1));
+
+
+        showQuestion(0);
+
 //        setQuestion();
     }
 
