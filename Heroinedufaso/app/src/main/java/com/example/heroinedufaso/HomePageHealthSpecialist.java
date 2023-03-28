@@ -17,7 +17,7 @@ public class HomePageHealthSpecialist extends AppCompatActivity {
 
     private Button chatConsultationBtn;
 
-    private Button periodEngineBtn;
+    private Button denonciationButton;
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
@@ -31,6 +31,7 @@ public class HomePageHealthSpecialist extends AppCompatActivity {
         profileBtn = (Button) findViewById(R.id.profile_health_specialist_home_btn);
         signOutBtn = (Button) findViewById(R.id.sign_out_btn);
         chatConsultationBtn = (Button) findViewById(R.id.chat_specialist_consultation);
+        denonciationButton = (Button) findViewById(R.id.denoncer_specialist);
         //periodEngineBtn = (Button) findViewById(R.id.menstruel);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -42,5 +43,31 @@ public class HomePageHealthSpecialist extends AppCompatActivity {
                 startActivity(new Intent(HomePageHealthSpecialist.this, ConsultationSpecialist.class));
             }
         });
+
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePageHealthSpecialist.this, ProfileSpecialistActivity.class));
+            }
+        });
+
+        signOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(currentUser != null){
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(HomePageHealthSpecialist.this, MainActivity.class));
+                    finish();
+                }
+            }
+        });
+
+        denonciationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePageHealthSpecialist.this, DenonciationAdmActivity.class));
+            }
+        });
+
     }
 }

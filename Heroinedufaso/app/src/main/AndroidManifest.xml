@@ -68,6 +68,8 @@
         <activity
             android:name=".FriendsActivity"
             android:exported="false" />
+        <activity android:name="ProfileSpecialistActivity"
+            android:exported="false"/>
         <activity
             android:name=".ProfileUserActivity"
             android:exported="false" />
