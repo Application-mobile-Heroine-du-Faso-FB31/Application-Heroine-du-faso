@@ -87,7 +87,7 @@
                 android:backgroundTint="#E07B9B"
                 android:drawableLeft="@drawable/icone_denoncer_page_utlisateur"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:icon="@drawable/noun_newspaper_2226503"
+                app:icon="@drawable/baseline_thumb_down_24"
                 app:iconSize="75dp" />
 
             <Button

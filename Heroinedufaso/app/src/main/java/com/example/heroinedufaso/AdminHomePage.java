@@ -92,5 +92,12 @@ public class AdminHomePage extends AppCompatActivity {
             }
         });
 
+        consultation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminHomePage.this, UserConsultation.class));
+            }
+        });
+
     }
 }

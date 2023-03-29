@@ -22,6 +22,8 @@ public class HomePageHealthSpecialist extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
+    private Button quizBtn, periodCalculatorBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,8 @@ public class HomePageHealthSpecialist extends AppCompatActivity {
         signOutBtn = (Button) findViewById(R.id.sign_out_btn);
         chatConsultationBtn = (Button) findViewById(R.id.chat_specialist_consultation);
         denonciationButton = (Button) findViewById(R.id.denoncer_specialist);
-        //periodEngineBtn = (Button) findViewById(R.id.menstruel);
+        periodCalculatorBtn = (Button) findViewById(R.id.menstruel_specialist);
+        quizBtn = (Button) findViewById(R.id.quiz_home_specialist_activity);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
@@ -66,6 +69,20 @@ public class HomePageHealthSpecialist extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomePageHealthSpecialist.this, DenonciationAdmActivity.class));
+            }
+        });
+
+        quizBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePageHealthSpecialist.this, QuizAdmActivity.class));
+            }
+        });
+
+        periodCalculatorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePageHealthSpecialist.this, CyclesEngineActivity.class));
             }
         });
 
