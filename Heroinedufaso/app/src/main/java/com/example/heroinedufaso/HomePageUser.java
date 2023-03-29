@@ -20,6 +20,7 @@ public class HomePageUser extends AppCompatActivity {
     private Button chatListBtn;
 
     private Button periodEngineBtn;
+    private Button consultationBtn;
 
     private Button startQuizz;
 
@@ -41,12 +42,20 @@ public class HomePageUser extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         postBtn = findViewById(R.id.denoncer);
+        consultationBtn = findViewById(R.id.consultation);
 
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(HomePageUser.this, ProfileUserActivity.class);
                 startActivity(i);
+            }
+        });
+
+        consultationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePageUser.this, UserConsultation.class));
             }
         });
 
