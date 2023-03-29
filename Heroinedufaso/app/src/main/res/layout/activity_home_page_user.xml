@@ -132,7 +132,7 @@
                 android:backgroundTint="#DE7B99"
                 android:drawableLeft="@drawable/icone_carte_page_utlisateur"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:icon="@drawable/baseline_quiz_24"
+                app:icon="@drawable/noun_quiz_3"
                 app:iconSize="75dp" />
 
             <Button
